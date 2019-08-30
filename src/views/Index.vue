@@ -104,8 +104,8 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { MeshBasicMaterial, Texture } from 'three';
 import { Toast, Dialog } from 'vant';
-import Model from './Model';
-import { IPlace, IStyle, path } from './path';
+import Model from '../threejs/Model';
+import { IPlace, IStyle, path } from '../threejs/path';
 // import { ElLoadingComponent } from 'element-ui/types/loading';
 
 const styleObjArr = path();
