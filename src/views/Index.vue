@@ -54,8 +54,8 @@
           <img
             :src="
               audioBoool
-                ? '/decoration/UI/打开声音.png'
-                : '/decoration/UI/关闭声音.png'
+                ? '/UI/打开声音.png'
+                : '/UI/关闭声音.png'
             "
             alt=""
             height="20"
@@ -68,8 +68,8 @@
           <img
             :src="
               ScreenBoool
-                ? '/decoration/UI/全屏5.png'
-                : '/decoration/UI/退出全屏.png'
+                ? '/UI/全屏5.png'
+                : '/UI/退出全屏.png'
             "
             alt=""
             width="18"
@@ -82,8 +82,8 @@
           <img
             :src="
               rotateBoool
-                ? '/decoration/UI/旋转.png'
-                : '/decoration/UI/停止旋转.png'
+                ? '/UI/旋转.png'
+                : '/UI/停止旋转.png'
             "
             alt=""
             width="20"
@@ -93,7 +93,7 @@
       </van-button>
       <van-button type="danger" circle @click="questionClick()">
         <i>
-          <img src="/decoration/UI/帮助5.png" alt="" width="22" height="22" />
+          <img src="/UI/帮助5.png" alt="" width="22" height="22" />
         </i>
       </van-button>
     </div>
@@ -104,9 +104,8 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { MeshBasicMaterial, Texture } from 'three';
 import { Toast, Dialog } from 'vant';
-import Model from './Model';
-import { IPlace, IStyle, path } from './path';
-// import { ElLoadingComponent } from 'element-ui/types/loading';
+import Model from '@/threejs/Model';
+import { IPlace, IStyle, path } from '@/threejs/path';
 
 const styleObjArr = path();
 @Component
@@ -145,7 +144,7 @@ export default class House extends Vue {
     // console.log(this.path);
     (this.model.mesh
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
-      '/decoration/风格/' + this.path,
+      '/风格/' + this.path,
       () => {
         Toast.clear();
         // this.loading.close();
@@ -289,7 +288,7 @@ export default class House extends Vue {
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     (this.model.mesh
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
-      '/decoration/风格/' + this.path,
+      '/风格/' + this.path,
       () => {
         Toast.clear();
         // this.loading.close();
@@ -321,7 +320,7 @@ export default class House extends Vue {
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     (this.model.mesh
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
-      '/decoration/风格/' + this.path,
+      '/风格/' + this.path,
       () => {
         Toast.clear();
         // this.loading.close();

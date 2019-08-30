@@ -69,9 +69,9 @@ export default class Model {
         this.audio.setLoop(true);
         this.audio.setVolume(0.3);
         this.audio.play();
+        this.animation();
       }, () => {/**/}, () => {/**/});
       // render()
-      this.animation();
     });
     (this.mesh.material as MeshBasicMaterial).map = texture;
     // let width = window.innerWidth;
