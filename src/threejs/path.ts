@@ -39,7 +39,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '00110.jpg', '00111.jpg', '00112.jpg', '0012.jpg', '0013.jpg', '0014.jpg', '0015.jpg', '0016.jpg', '0017.jpg', '0018.jpg', '0019.jpg'],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -51,7 +51,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg', '0014.jpg'],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
@@ -82,7 +82,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '00110.jpg', '0012.jpg', '0013.jpg', '0014.jpg', '0015.jpg', '0016.jpg', '0017.jpg', '0018.jpg', '0019.jpg'],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -94,7 +94,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg', '0014.jpg'],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
@@ -125,7 +125,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg'],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -137,7 +137,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg'],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
@@ -168,7 +168,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg', '0014.jpg', '0015.jpg'],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -180,7 +180,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg'],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
@@ -211,7 +211,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg', '0012.jpg', '0013.jpg', '0014.jpg', '0015.jpg'],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -223,7 +223,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg'],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
@@ -254,7 +254,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: [],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -266,7 +266,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: [],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
@@ -297,7 +297,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: ['0011.jpg'],
       }, {
-        name: '卧室',
+        name: 'sleepRoom',
         styleObj: {
           background: null,
         },
@@ -309,7 +309,7 @@ export function path(): IStyle[] {
         },
         jpgNameArr: [],
       }, {
-        name: '书房',
+        name: 'studyRoom',
         styleObj: {
           background: null,
         },
