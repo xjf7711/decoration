@@ -3,6 +3,16 @@ import App from './App.vue';
 import router from './router';
 import store from './store';
 
+import Vant from 'vant';
+import 'vant/lib/index.css';
+import 'vant/lib/icon/local.css';
+
+Vue.use(Vant);
+// import { Toast, Dialog, Button } from 'vant';
+// Vue.use(Toast);
+// Vue.use(Dialog);
+// Vue.use(Button);
+
 Vue.config.productionTip = false;
 
 new Vue({
