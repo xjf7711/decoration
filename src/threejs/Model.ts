@@ -17,6 +17,7 @@ import {
 import BaseThree from './BaseThree';
 import Events from './Events';
 import { path } from './path';
+import { Toast } from 'vant';
 
 export default class Model {
   public rotateBoool = true;
@@ -59,20 +60,33 @@ export default class Model {
     this.textureLoader = new TextureLoader();
     const listener = new AudioListener();
     this.audio = new Audio(listener);
-    const texture = this.textureLoader.load('./风格/中式/客餐厅/00125.jpg', (obj) => {
-      // console.log(vm.loading);
-      this.loaded = true;
-      // vm.loading.close();
-      const audioLoader = new AudioLoader();
-      audioLoader.load('./音乐/琵琶语.mp3', (audioBuffer: AudioBuffer) => {
-        this.audio.setBuffer(audioBuffer);
-        this.audio.setLoop(true);
-        this.audio.setVolume(0.3);
-        this.audio.play();
+    const texture = this.textureLoader.load(
+      './风格/中式/客餐厅/00125.jpg',
+      (obj) => {
+        // console.log(vm.loading);
+        this.loaded = true;
+        // vm.loading.close();
+        const audioLoader = new AudioLoader();
+        audioLoader.load(
+          './音乐/琵琶语.mp3',
+          (audioBuffer: AudioBuffer) => {
+            Toast.clear();
+            this.audio.setBuffer(audioBuffer);
+            this.audio.setLoop(true);
+            this.audio.setVolume(0.3);
+            this.audio.play();
+          },
+          () => {
+            /**/
+          },
+          () => {
+            /**/
+          },
+        );
+        // render()
         this.animation();
-      }, () => {/**/}, () => {/**/});
-      // render()
-    });
+      },
+    );
     (this.mesh.material as MeshBasicMaterial).map = texture;
     // let width = window.innerWidth;
     // let height = window.innerHeight;
