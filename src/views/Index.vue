@@ -54,8 +54,8 @@
           <img
             :src="
               audioBoool
-                ? './UI/openAudio.png'
-                : './UI/closeAudio.png'
+                ? './UI/打开声音.png'
+                : './UI/关闭声音.png'
             "
             alt=""
             height="20"
@@ -104,9 +104,8 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import { MeshBasicMaterial, Texture } from 'three';
 import { Toast, Dialog } from 'vant';
-import Model from '../threejs/Model';
-import { IPlace, IStyle, path } from '../threejs/path';
-// import { ElLoadingComponent } from 'element-ui/types/loading';
+import Model from '@/threejs/Model';
+import { IPlace, IStyle, path } from '@/threejs/path';
 
 const styleObjArr = path();
 @Component
@@ -119,7 +118,7 @@ export default class House extends Vue {
   private height: number = 300;
   private classPath = 'chinese/客餐厅';
   private path = '';
-  private audioBoool = false;
+  private audioBoool = true;
   private ScreenBoool = true;
   private rotateBoool = true;
   private N = styleObjArr[0].children[0].jpgNameArr.length;
@@ -145,7 +144,7 @@ export default class House extends Vue {
     // console.log(this.path);
     (this.model.mesh
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
-      '/style/' + this.path,
+      './风格/' + this.path,
       () => {
         Toast.clear();
         // this.loading.close();
@@ -184,7 +183,7 @@ export default class House extends Vue {
       duration: 0, // 持续展示 toast
       forbidClick: true, // 禁用背景点击
       loadingType: 'spinner',
-      message: 'Loading',
+      // message: 'Loading',
     });
     // this.$loading({
     //   lock: true,
@@ -201,12 +200,6 @@ export default class House extends Vue {
     // console.log('this.height is ', this.height);
     this.model = new Model();
     this.model.init(this.$el as HTMLElement);
-    setTimeout(() => {
-      // console.log('this.model.loaded is ', this.model.loaded);
-      // console.log('this.loaded is ', this.loaded)
-      Toast.clear();
-      // this.loading.close()
-    }, 1000);
   }
 
   private audioClick() {
@@ -268,7 +261,7 @@ export default class House extends Vue {
       forbidClick: true,
       duration: 0,
       loadingType: 'spinner',
-      message: 'Loading',
+      // message: 'Loading',
     });
     // this.$loading({
     //   lock: true,
@@ -289,7 +282,7 @@ export default class House extends Vue {
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     (this.model.mesh
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
-      '/style/' + this.path,
+      './风格/' + this.path,
       () => {
         Toast.clear();
         // this.loading.close();
@@ -303,7 +296,7 @@ export default class House extends Vue {
     this.loading = Toast.loading({
       duration: 0,
       forbidClick: true,
-      message: 'Loading',
+      // message: 'Loading',
       loadingType: 'spinner',
     });
     // this.$loading({
@@ -321,7 +314,7 @@ export default class House extends Vue {
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     (this.model.mesh
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
-      '/style/' + this.path,
+      './风格/' + this.path,
       () => {
         Toast.clear();
         // this.loading.close();

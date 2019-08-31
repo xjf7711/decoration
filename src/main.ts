@@ -8,10 +8,6 @@ import 'vant/lib/index.css';
 import 'vant/lib/icon/local.css';
 
 Vue.use(Vant);
-// import { Toast, Dialog, Button } from 'vant';
-// Vue.use(Toast);
-// Vue.use(Dialog);
-// Vue.use(Button);
 
 Vue.config.productionTip = false;
 
