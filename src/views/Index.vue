@@ -1,20 +1,22 @@
 <template>
   <div class="house" z-index="105">
-    <div v-cloak id="menu" :style="{ left: width / 2 + -250 + 'px' }">
-      <div>
-        <span style="font-weight:bold;cursor:default;">风格:</span>
-        <span
+    <div v-cloak id="menu" :style="{left:left+'px'}">
+      <van-row>
+        <van-col span="3" style="font-weight:bold;cursor:default;">风格:</van-col>
+        <van-col
+                span="3"
           v-for="obj in styleArr"
           :key="obj.name"
           :style="obj.styleObj"
           @click="styleClick(obj)"
-          >{{ obj.name }}</span
+          >{{ obj.name }}</van-col
         >
-      </div>
+      </van-row>
       <div>
         <span style="font-weight:bold;cursor:default;">位置:</span>
         <template v-for="obj in posArr">
           <span
+                  style="padding: 5px 5px"
             v-if="obj.jpgNameArr.length"
             :key="obj.name"
             :style="obj.styleObj"
@@ -48,7 +50,7 @@
         {{ num }}/{{ N }}
       </div>
     </div>
-    <div style="position: absolute;right:20px;top:70px">
+    <div style="position: absolute;right:20px;top:60px">
       <van-button type="danger" circle @click="audioClick()">
         <i>
           <img
@@ -118,21 +120,21 @@ export default class House extends Vue {
   private height: number = 300;
   private classPath = 'chinese/客餐厅';
   private path = '';
-  private audioBoool = true;
+  private audioBoool = false;
   private ScreenBoool = true;
   private rotateBoool = true;
   private N = styleObjArr[0].children[0].jpgNameArr.length;
   private num = 1;
   private model!: Model;
   private loading: any; // ElLoadingComponent;
-
+  private left: number = 0;
   @Watch('num')
   private onNumChange() {
     this.loading = Toast.loading({
       duration: 0, // 持续展示 toast
       forbidClick: true, // 禁用背景点击
       loadingType: 'spinner',
-      message: 'Loading',
+      // message: 'Loading',
     });
     // this.$loading({
     //   lock: true,
@@ -170,7 +172,8 @@ export default class House extends Vue {
   private onModelChange() {
     // console.log('this.model changed, and is ', this.model);
     if (this.model && this.model.loaded) {
-      this.loading.close();
+      // this.loading.close();
+      Toast.clear();
     }
   }
 
@@ -196,6 +199,7 @@ export default class House extends Vue {
   private mounted() {
     this.width = this.$el.clientWidth;
     // console.log('this.width is ', this.width);
+    this.left = this.width > 440 ? (this.width - 440) / 2 : 0;
     this.height = this.$el.clientHeight;
     // console.log('this.height is ', this.height);
     this.model = new Model();
@@ -329,28 +333,31 @@ export default class House extends Vue {
 .house {
   width: 100vw;
   height: 100vh;
+  text-align: center;
 }
 
 #menu {
   position: absolute;
+  text-align: center;
   bottom: 0;
   color: #fff;
   background: rgba(0, 0, 0, 0.5);
-  padding: 10px;
+  padding: 10px 0;
   z-index: 102;
-  width: 500px;
+  width: 100vw;
+  max-width: 440px;
   height: 80px;
 }
 
 #menu > div {
-  padding: 5px;
+  padding: 5px 0;
 }
 
-#menu span {
-  display: inline-block;
-  padding: 5px 10px;
-  cursor: pointer;
-}
+/*#menu span {*/
+/*  display: inline-block;*/
+/*  padding: 5px 2px;*/
+/*  cursor: pointer;*/
+/*}*/
 
 .van-button--danger {
   font-size: 25px !important;

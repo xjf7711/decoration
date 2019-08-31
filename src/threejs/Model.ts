@@ -57,13 +57,12 @@ export default class Model {
     });
     this.mesh = new Mesh(box, material);
     this.scene.add(this.mesh);
-    this.textureLoader = new TextureLoader();
     const listener = new AudioListener();
     this.audio = new Audio(listener);
+    this.textureLoader = new TextureLoader();
     const texture = this.textureLoader.load(
       './风格/中式/客餐厅/00125.jpg',
-      (obj) => {
-        // console.log(vm.loading);
+      () => {
         this.loaded = true;
         // vm.loading.close();
         const audioLoader = new AudioLoader();
@@ -74,10 +73,11 @@ export default class Model {
             this.audio.setBuffer(audioBuffer);
             this.audio.setLoop(true);
             this.audio.setVolume(0.3);
-            this.audio.play();
           },
-          () => {
-            /**/
+          (xhr: ProgressEvent) => {
+            // if (xhr.total === xhr.loaded) {
+            //   console.log('onProgress xhr.total === xhr.loaded.');
+            // }
           },
           () => {
             /**/
