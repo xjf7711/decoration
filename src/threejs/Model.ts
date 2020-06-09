@@ -1,28 +1,30 @@
 import {
-  Material,
+  Audio,
+  AudioBuffer,
+  AudioListener,
+  AudioLoader,
   BackSide,
-  Mesh,
   Clock,
-  Scene,
-  WebGLRenderer,
+  Mesh,
+  MeshBasicMaterial,
   PerspectiveCamera,
+  Scene,
   SphereGeometry,
   TextureLoader,
-  AudioListener,
-  Audio,
-  AudioLoader,
-  AudioBuffer,
-  MeshBasicMaterial,
+  WebGLRenderer,
 } from 'three';
 import BaseThree from './BaseThree';
 import Events from './Events';
-import { path } from './path';
-import { Toast } from 'vant';
+import {Toast} from 'vant';
 
+interface IBox extends Mesh {
+  mesh: SphereGeometry;
+  material: MeshBasicMaterial;
+}
 export default class Model {
   public rotateBoool = true;
   public audio!: Audio;
-  public mesh!: Mesh;
+  public box!: IBox;
   public textureLoader!: TextureLoader;
   public events!: Events;
   public loaded: boolean = false;
@@ -50,44 +52,43 @@ export default class Model {
   }
   public initModel() {
     // console.log('initModel begins . ');
-    const box = new SphereGeometry(250, 50, 50);
+    const boxGeo = new SphereGeometry(250, 50, 50);
     const material = new MeshBasicMaterial({
       color: 0xffffff,
       side: BackSide,
     });
-    this.mesh = new Mesh(box, material);
-    this.scene.add(this.mesh);
+    this.box = new Mesh(boxGeo, material) as IBox;
+    this.scene.add(this.box);
     const listener = new AudioListener();
     this.audio = new Audio(listener);
     this.textureLoader = new TextureLoader();
-    const texture = this.textureLoader.load(
-      './风格/中式/客餐厅/00125.jpg',
-      () => {
-        this.loaded = true;
-        // vm.loading.close();
-        const audioLoader = new AudioLoader();
-        audioLoader.load(
-          './音乐/琵琶语.mp3',
-          (audioBuffer: AudioBuffer) => {
-            Toast.clear();
-            this.audio.setBuffer(audioBuffer);
-            this.audio.setLoop(true);
-            this.audio.setVolume(0.3);
-          },
-          (xhr: ProgressEvent) => {
-            // if (xhr.total === xhr.loaded) {
-            //   console.log('onProgress xhr.total === xhr.loaded.');
-            // }
-          },
-          () => {
-            /**/
-          },
-        );
-        // render()
-        this.animation();
-      },
+    this.box.material.map = this.textureLoader.load(
+        './风格/中式/客餐厅/00125.jpg',
+        () => {
+          this.loaded = true;
+          // vm.loading.close();
+          const audioLoader = new AudioLoader();
+          audioLoader.load(
+              './音乐/琵琶语.mp3',
+              (audioBuffer: AudioBuffer) => {
+                Toast.clear();
+                this.audio.setBuffer(audioBuffer);
+                this.audio.setLoop(true);
+                this.audio.setVolume(0.3);
+              },
+              (xhr: ProgressEvent) => {
+                // if (xhr.total === xhr.loaded) {
+                //   console.log('onProgress xhr.total === xhr.loaded.');
+                // }
+              },
+              () => {
+                /**/
+              },
+          );
+          // render()
+          this.animation();
+        },
     );
-    (this.mesh.material as MeshBasicMaterial).map = texture;
     // let width = window.innerWidth;
     // let height = window.innerHeight;
     // let k = width / height;
@@ -102,7 +103,7 @@ export default class Model {
     if (this.timeS > this.refreshTime) {
       this.renderer.render(this.scene, this.camera);
       if (this.rotateBoool) {
-        this.mesh.rotateY(0.002);
+        this.box.rotateY(0.002);
       }
       this.timeS = 0;
     }

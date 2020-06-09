@@ -144,7 +144,7 @@ export default class House extends Vue {
     // });
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     // console.log(this.path);
-    (this.model.mesh
+    (this.model.box
       .material as MeshBasicMaterial).map = this.model.textureLoader.load(
       './风格/' + this.path,
       () => {
@@ -284,8 +284,7 @@ export default class House extends Vue {
     this.N = this.posChoose.jpgNameArr.length;
     this.classPath = this.styleChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
-    (this.model.mesh
-      .material as MeshBasicMaterial).map = this.model.textureLoader.load(
+    this.model.box.material.map = this.model.textureLoader.load(
       './风格/' + this.path,
       () => {
         Toast.clear();
@@ -316,8 +315,7 @@ export default class House extends Vue {
     this.posChoose.styleObj.background = '#409EFF';
     this.classPath = this.styleChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
-    (this.model.mesh
-      .material as MeshBasicMaterial).map = this.model.textureLoader.load(
+    this.model.box.material.map = this.model.textureLoader.load(
       './风格/' + this.path,
       () => {
         Toast.clear();
