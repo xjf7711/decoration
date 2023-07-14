@@ -78,7 +78,7 @@
     "type-dom-parser": "^0.0.3",
     "type-dom-svgs": "^0.0.3",
     "type-dom-ui": "^0.0.3",
-    "type-dom.ts": "^0.0.19"
+    "type-dom.ts": "^0.0.20"
   },
   "typeCoverage": {
     "atLeast": 99,

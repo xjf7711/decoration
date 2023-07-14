@@ -13,7 +13,7 @@
         >
       </van-row>
       <div>
-        <span style="font-weight:bold;cursor:default;">位置:</span>
+        <span style="font-weight:bold; cursor:default;">位置:</span>
         <template v-for="obj in posArr">
           <span
                   style="padding: 5px 5px"
