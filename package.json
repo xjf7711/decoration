@@ -16,7 +16,7 @@
     "coverage": "typescript-coverage-report"
   },
   "keywords": [
-    "decoration",
+    "室内装修3D全景图",
     "threejs",
     "typescript",
     "webpack",
@@ -73,12 +73,13 @@
   },
   "dependencies": {
     "axios": "^1.4.0",
+    "normalize.css": "^8.0.1",
     "rxjs": "^7.8.1",
     "three": "^0.108.0",
     "type-dom-parser": "^0.0.3",
     "type-dom-svgs": "^0.0.3",
     "type-dom-ui": "^0.0.3",
-    "type-dom.ts": "^0.0.20"
+    "type-dom.ts": "^0.0.22"
   },
   "typeCoverage": {
     "atLeast": 99,

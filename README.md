@@ -1,6 +1,6 @@
 ## 项目说明
 
-> 这是一个基于TypeDom框架创建的app项目脚手架。
+> 使用threejs，基于type-dom框架，仿照网上的例子写的室内装修的3D全景图。
 
 ## 项目环境
 
@@ -48,14 +48,14 @@
         –	build
         –	public
         –	src
-            –	assets
-            –	core:
+            –	components
+            –	styles
+            –	threejs:
                 –	controls
-                –	document
-                –	menus
-                –	page
+                –	BaseThree.ts
+                –	Model.ts
+                –	path.ts
             –	views 页面布局
-            –	style
         –	test
 
 

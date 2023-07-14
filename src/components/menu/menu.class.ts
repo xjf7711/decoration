@@ -1,7 +1,7 @@
+import {fromEvent} from "rxjs";
 import {Cursor, Division, Span, TextNode, TypeDiv} from "type-dom.ts";
 import {House} from "../../views/house";
 import {IMenuConfig} from "./menu.interface";
-import {fromEvent} from "rxjs";
 
 export class Menu extends TypeDiv {
   className: 'Menu';
