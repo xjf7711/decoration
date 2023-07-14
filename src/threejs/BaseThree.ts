@@ -1,5 +1,5 @@
 import { Scene, PerspectiveCamera, WebGLRenderer, Clock } from 'three';
-import OrbitControls from '@/threejs/controls/OrbitControls';
+import OrbitControls from './controls/OrbitControls';
 
 export default class BaseThree {
   public scene!: Scene;
@@ -7,8 +7,8 @@ export default class BaseThree {
   public renderer!: WebGLRenderer;
 
   public $el!: HTMLElement;
-  public width: number = 400;
-  public height: number = 300;
+  public width = 400;
+  public height = 300;
   public init($el: HTMLElement) {
     // console.log('BaseThree init .');
     this.$el = $el;

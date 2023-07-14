@@ -15,7 +15,7 @@ import {
 } from 'three';
 import BaseThree from './BaseThree';
 import Events from './Events';
-import {Toast} from 'vant';
+// import {Toast} from 'vant';
 
 interface IBox extends Mesh {
   mesh: SphereGeometry;
@@ -27,7 +27,7 @@ export default class Model {
   public box!: IBox;
   public textureLoader!: TextureLoader;
   public events!: Events;
-  public loaded: boolean = false;
+  public loaded = false;
   private FPS = 30;
   private refreshTime = 1 / this.FPS;
   private timeS = 0;
@@ -36,9 +36,9 @@ export default class Model {
   private scene!: Scene;
   private camera!: PerspectiveCamera;
   public init($el: HTMLElement) {
-    // console.log('model init .');
+    console.log('model init .');
     const baseObj = new BaseThree();
-    baseObj.init($el as HTMLElement);
+    baseObj.init($el);
     this.events = new Events();
     this.events.init(baseObj);
 
@@ -51,7 +51,7 @@ export default class Model {
     // window.onresize = () => this.events.onresizeFun();
   }
   public initModel() {
-    // console.log('initModel begins . ');
+    console.log('initModel begins . ');
     const boxGeo = new SphereGeometry(250, 50, 50);
     const material = new MeshBasicMaterial({
       color: 0xffffff,
@@ -63,31 +63,31 @@ export default class Model {
     this.audio = new Audio(listener);
     this.textureLoader = new TextureLoader();
     this.box.material.map = this.textureLoader.load(
-        './风格/中式/客餐厅/00125.jpg',
-        () => {
-          this.loaded = true;
-          // vm.loading.close();
-          const audioLoader = new AudioLoader();
-          audioLoader.load(
-              './音乐/琵琶语.mp3',
-              (audioBuffer: AudioBuffer) => {
-                Toast.clear();
-                this.audio.setBuffer(audioBuffer);
-                this.audio.setLoop(true);
-                this.audio.setVolume(0.3);
-              },
-              (xhr: ProgressEvent) => {
-                // if (xhr.total === xhr.loaded) {
-                //   console.log('onProgress xhr.total === xhr.loaded.');
-                // }
-              },
-              () => {
-                /**/
-              },
-          );
-          // render()
-          this.animation();
-        },
+      './风格/中式/客餐厅/00125.jpg',
+      () => {
+        this.loaded = true;
+        // vm.loading.close();
+        const audioLoader = new AudioLoader();
+        audioLoader.load(
+          './音乐/琵琶语.mp3',
+          (audioBuffer: AudioBuffer) => {
+            // Toast.clear();
+            this.audio.setBuffer(audioBuffer);
+            this.audio.setLoop(true);
+            this.audio.setVolume(0.3);
+          },
+          (xhr: ProgressEvent) => {
+            // if (xhr.total === xhr.loaded) {
+            //   console.log('onProgress xhr.total === xhr.loaded.');
+            // }
+          },
+          () => {
+            /**/
+          },
+        );
+        // render()
+        this.animation();
+      },
     );
     // let width = window.innerWidth;
     // let height = window.innerHeight;
