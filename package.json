@@ -1,7 +1,7 @@
 {
   "name": "decoration",
   "version": "0.0.1",
-  "description": "使用threejs基于TypeDom框架，仿照网上的例子写的室内装修的3D全景图。 . ",
+  "description": "使用threejs基于TypeDom框架，仿照网上的例子写的室内装修的3D全景图。",
   "main": "src/main.ts",
   "scripts": {
     "serve": "webpack-dev-server --mode=development --config ./build/webpack.config.js",
