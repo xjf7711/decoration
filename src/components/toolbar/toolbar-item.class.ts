@@ -24,13 +24,13 @@ export class ToolbarItem extends TypeDiv {
       justifyContent: 'center',
       alignItems: 'center'
     })
-    this.img = this.createItem(this,{
+    this.img = this.createItem<Img>(this,{
       TypeClass: Img,
       config: {
         src: config.src,
         height: config.height,
         width: config.width
       }
-    }) as Img;
+    });
   }
 }
