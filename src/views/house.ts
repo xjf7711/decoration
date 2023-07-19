@@ -1,6 +1,6 @@
 import {Division, Img, Span, TypeDiv} from 'type-dom.ts';
 import Model from '../threejs/Model';
-import { IPlace, IStyle, mannerList } from '../threejs/path';
+import { IPlace, IManner, mannerList } from '../threejs/path';
 import { AppRoot } from '../app-root';
 import {Menu} from "../components/menu/menu.class";
 import {Next} from "../components/next/next.class";
@@ -12,7 +12,7 @@ const styleObjArr = mannerList;
 export class House extends TypeDiv {
   className: 'House';
   private readonly styleArr = styleObjArr;
-  private styleChoose!: IStyle;
+  private mannerChoose!: IManner;
   private posArr: IPlace[];
   private posChoose: IPlace;
   mannerItemChoose: Division;
@@ -72,7 +72,7 @@ export class House extends TypeDiv {
       this.numPanel,
       this.toolbar,
     );
-    this.styleChoose = styleObjArr[0];
+    this.mannerChoose = styleObjArr[0];
     this.mannerItemChoose = this.menuWrapper.manner.children[1] as Division;
     this.posChoose = styleObjArr[0].children[0];
     this.posItemChoose = this.menuWrapper.pos.children[1] as Span;
@@ -191,7 +191,7 @@ export class House extends TypeDiv {
     }
     this.resetNum();
   }
-  styleClick(styleObj: IStyle, mannerItem: Division) {
+  mannerClick(styleObj: IManner, mannerItem: Division) {
     console.log('styleClick . styleObj is ', styleObj);
     // this.loading = Toast.loading({
     //   forbidClick: true,
@@ -206,18 +206,18 @@ export class House extends TypeDiv {
     //   background: 'rgba(0, 0, 0, 0.7)'
     // });
     this.num = 1;
-    this.styleChoose.styleObj.background = null;
+    this.mannerChoose.styleObj.background = '';
     this.mannerItemChoose.setStyleObj({
       background: '',
     })
     this.posChoose.styleObj.background = null;
-    this.styleChoose = styleObj;
+    this.mannerChoose = styleObj;
     this.mannerItemChoose = mannerItem;
-    this.styleChoose.styleObj.background = '#409EFF';
+    this.mannerChoose.styleObj.background = '#409EFF';
     mannerItem.setStyleObj({
       background: '#409EFF',
     })
-    this.posArr = this.styleChoose.children;
+    this.posArr = this.mannerChoose.children;
     this.menuWrapper.setPosList(this.posArr);
     this.menuWrapper.pos.render();
     this.posChoose = this.posArr[0];
@@ -231,7 +231,7 @@ export class House extends TypeDiv {
       num: this.num,
       N: this.N
     });
-    this.classPath = this.styleChoose.name + '/' + this.posChoose.name;
+    this.classPath = this.mannerChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     this.model.box.material.map = this.model.textureLoader.load(
       './风格/' + this.path,
@@ -273,7 +273,7 @@ export class House extends TypeDiv {
       N: this.N
     });
     this.posChoose.styleObj.background = '#409EFF';
-    this.classPath = this.styleChoose.name + '/' + this.posChoose.name;
+    this.classPath = this.mannerChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     this.model.box.material.map = this.model.textureLoader.load(
       './风格/' + this.path,

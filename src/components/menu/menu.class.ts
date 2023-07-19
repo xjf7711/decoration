@@ -2,6 +2,7 @@ import {fromEvent} from "rxjs";
 import {Cursor, Division, Span, TextNode, TypeDiv} from "type-dom.ts";
 import {House} from "../../views/house";
 import {IMenuConfig} from "./menu.interface";
+import {IManner} from "../../threejs/path";
 
 export class Menu extends TypeDiv {
   className: 'Menu';
@@ -86,29 +87,29 @@ export class Menu extends TypeDiv {
     this.setMannerList(config.styleArr);
     this.setPosList(config.posArr);
   }
-  setMannerList(mannerList: any[]) {
-    for (const style of mannerList) {
-      console.log('style is ', style);
-      style.styleObj.width = '12.5%';
-      style.styleObj.display = 'inline-block';
-      const styleItem = this.createItem<Division>(this.manner, {
+  setMannerList(mannerList: IManner[]) {
+    for (const manner of mannerList) {
+      console.log('manner is ', manner);
+      manner.styleObj.width = '12.5%';
+      manner.styleObj.display = 'inline-block';
+      const mannerItem = this.createItem<Division>(this.manner, {
         TypeClass: Division,
         propObj: {
           attrObj: {
-            title: style.name,
+            title: manner.name,
           },
-          styleObj: style.styleObj
+          styleObj: manner.styleObj
         },
         childNodes: [
           {
             TypeClass: TextNode,
             config: {
-              title: style.name,
+              title: manner.name,
             }
           }
         ]
       });
-      fromEvent(styleItem.dom, 'click').subscribe(() => this.parent.styleClick(style, styleItem));
+      fromEvent(mannerItem.dom, 'click').subscribe(() => this.parent.mannerClick(manner, mannerItem));
     }
   }
   setPosList(posList: any[]) {
