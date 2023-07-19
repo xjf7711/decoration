@@ -4,7 +4,7 @@ import { IPlace, IManner, mannerList } from '../threejs/path';
 import { AppRoot } from '../app-root';
 import {Menu} from "../components/menu/menu.class";
 import {Next} from "../components/next/next.class";
-import {Preview} from "../components/preview/preview.class";
+import {Previous} from "../components/previous/previous.class";
 import {NumPanel} from "../components/num-panel/num-panel.class";
 import {Toolbar} from "../components/toolbar/toolbar.class";
 
@@ -31,7 +31,7 @@ export class House extends TypeDiv {
   private left = 0;
   private readonly menuWrapper: Menu;
   private readonly nextWrapper: Next;
-  private readonly preWrapper: Preview;
+  private readonly preWrapper: Previous;
   private readonly numPanel: NumPanel;
   private readonly toolbar: Toolbar;
   constructor(public parent: AppRoot) {
@@ -57,7 +57,7 @@ export class House extends TypeDiv {
       posArr: this.posArr
     });
     this.nextWrapper = new Next(this);
-    this.preWrapper = new Preview(this);
+    this.preWrapper = new Previous(this);
     this.numPanel = new NumPanel(this, {
       num: this.num,
       N: this.N

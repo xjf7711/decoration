@@ -3,7 +3,7 @@ import {TypeDiv} from "type-dom.ts";
 import {House} from "../../views/house";
 import {ElArrowLeftSvg} from "type-dom-svgs";
 import {TdIcon} from "type-dom-ui/basic/td-icon/td-icon.class";
-export class Preview extends TypeDiv {
+export class Previous extends TypeDiv {
   className: 'Preview';
   constructor(public parent: House) {
     super();
