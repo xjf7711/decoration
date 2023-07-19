@@ -1,8 +1,8 @@
 import {TypeDiv} from "type-dom.ts";
-import {House} from "../../views/house";
 import {TdButton} from "type-dom-ui";
 import {ElArrowRightSvg} from "type-dom-svgs";
 import {TdIcon} from "type-dom-ui/basic/td-icon/td-icon.class";
+import {House} from "../../views/house";
 import {fromEvent} from "rxjs";
 
 export class Next extends TypeDiv {
@@ -15,12 +15,12 @@ export class Next extends TypeDiv {
       right: '5px'
     });
     this.addAttrName('next');
-    const icon = this.createItem(this, {
+    const icon = this.createItem<TdIcon>(this, {
       TypeClass: TdIcon,
       config: {
         SvgClass: ElArrowRightSvg,
       }
-    }) as TdIcon;
+    });
     icon.addStyleObj({
       fontSize: '25px',
       background: 'rgba(0, 0, 0, 0.5)',
