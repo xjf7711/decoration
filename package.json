@@ -76,10 +76,10 @@
     "normalize.css": "^8.0.1",
     "rxjs": "^7.8.1",
     "three": "^0.125.0",
-    "type-dom-parser": "^0.0.3",
-    "type-dom-svgs": "^0.0.3",
+    "type-dom-parser": "^0.0.4",
+    "type-dom-svgs": "^0.0.4",
     "type-dom-ui": "^0.0.3",
-    "type-dom.ts": "^0.0.22"
+    "type-dom.ts": "^0.0.30"
   },
   "typeCoverage": {
     "atLeast": 99,

@@ -15,12 +15,12 @@ export class Next extends TypeDiv {
       right: '5px'
     });
     this.addAttrName('next');
-    const icon = this.createItem(this, {
+    const icon = this.createItem<TdIcon>(this, {
       TypeClass: TdIcon,
       config: {
         SvgClass: ElArrowRightSvg,
       }
-    }) as TdIcon;
+    });
     icon.addStyleObj({
       fontSize: '25px',
       background: 'rgba(0, 0, 0, 0.5)',

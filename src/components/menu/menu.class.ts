@@ -25,7 +25,7 @@ export class Menu extends TypeDiv {
     });
     this.manner = new Division(this);
     this.manner.addAttrName('manner');
-    const mannerItem = this.manner.createItem(this.manner, {
+    this.createItem<Division>(this.manner, {
       TypeClass: Division,
       propObj: {
         attrObj: {
@@ -47,7 +47,7 @@ export class Menu extends TypeDiv {
           }
         }
       ]
-    }) as TypeDiv;
+    });
     this.pos = new Division(this);
     this.pos.addAttrName('position');
     this.pos.addStyleObj({
@@ -58,7 +58,7 @@ export class Menu extends TypeDiv {
     config && this.setConfig(config);
   }
   createFirstPostItem() {
-    const firstPostItem = this.pos.createItem(this.pos, {
+    this.createItem(this.pos, {
       TypeClass: Span,
       propObj: {
         attrObj: {
@@ -77,7 +77,7 @@ export class Menu extends TypeDiv {
           }
         }
       ]
-    }) as Span;
+    });
   }
   setConfig(config: IMenuConfig) {
     this.addStyleObj({
@@ -91,7 +91,7 @@ export class Menu extends TypeDiv {
       console.log('style is ', style);
       style.styleObj.width = '12.5%';
       style.styleObj.display = 'inline-block';
-      const styleItem = this.manner.createItem(this.manner, {
+      const styleItem = this.createItem(this.manner, {
         TypeClass: Division,
         propObj: {
           attrObj: {
@@ -119,7 +119,7 @@ export class Menu extends TypeDiv {
       if (pos.jpgNameArr.length) {
         const styleObj = pos.styleObj;
         styleObj.padding = '5px 5px';
-        const posItem = this.pos.createItem(this.pos, {
+        const posItem = this.createItem(this.pos, {
           TypeClass: Span,
           propObj: {
             attrObj: {
