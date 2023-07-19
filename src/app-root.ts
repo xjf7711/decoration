@@ -1,4 +1,4 @@
-import { Division, TextNode, TypeRoot } from 'type-dom.ts';
+import { TypeRoot } from 'type-dom.ts';
 import { House } from './views/house';
 /**
  * 应用类，挂载全局属性和方法。

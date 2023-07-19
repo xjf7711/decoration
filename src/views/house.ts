@@ -1,5 +1,4 @@
-import {Division, Img, Span, TypeDiv, TypeNode} from 'type-dom.ts';
-import {Dialog, TdButton} from 'type-dom-ui';
+import {Division, Img, Span, TypeDiv} from 'type-dom.ts';
 import Model from '../threejs/Model';
 import { IPlace, IStyle, mannerList } from '../threejs/path';
 import { AppRoot } from '../app-root';
@@ -8,15 +7,14 @@ import {Next} from "../components/next/next.class";
 import {Preview} from "../components/preview/preview.class";
 import {NumPanel} from "../components/num-panel/num-panel.class";
 import {Toolbar} from "../components/toolbar/toolbar.class";
-import {MeshBasicMaterial} from "three";
 
 const styleObjArr = mannerList;
 export class House extends TypeDiv {
   className: 'House';
-  private styleArr = styleObjArr;
+  private readonly styleArr = styleObjArr;
   private styleChoose!: IStyle;
-  private posArr!: IPlace[];
-  private posChoose!: IPlace;
+  private posArr: IPlace[];
+  private posChoose: IPlace;
   mannerItemChoose: Division;
   posItemChoose: Span;
   private width = 400;
@@ -29,13 +27,13 @@ export class House extends TypeDiv {
   private N = styleObjArr[0].children[0].jpgNameArr.length;
   private num = 1;
   private model!: Model;
-  private loading: any; // ElLoadingComponent;
+  // private loading: any; // ElLoadingComponent;
   private left = 0;
-  private menuWrapper: Menu;
-  private nextWrapper: Next;
-  private preWrapper: Preview;
-  private numPanel: NumPanel;
-  private toolbar: Toolbar;
+  private readonly menuWrapper: Menu;
+  private readonly nextWrapper: Next;
+  private readonly preWrapper: Preview;
+  private readonly numPanel: NumPanel;
+  private readonly toolbar: Toolbar;
   constructor(public parent: AppRoot) {
     super();
     console.log('house constructor . ');
