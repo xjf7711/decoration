@@ -1,17 +1,16 @@
 import {Division, Img, Span, TypeDiv} from 'type-dom.ts';
+import { AppRoot } from '../app-root';
 import Model from '../threejs/Model';
 import { IPlace, IManner, mannerList } from '../threejs/path';
-import { AppRoot } from '../app-root';
 import {Menu} from "../components/menu/menu.class";
 import {Next} from "../components/next/next.class";
 import {Previous} from "../components/previous/previous.class";
 import {NumPanel} from "../components/num-panel/num-panel.class";
 import {Toolbar} from "../components/toolbar/toolbar.class";
 
-const styleObjArr = mannerList;
 export class House extends TypeDiv {
   className: 'House';
-  private readonly styleArr = styleObjArr;
+  private readonly styleArr = mannerList;
   private mannerChoose!: IManner;
   private posArr: IPlace[];
   private posChoose: IPlace;
@@ -24,7 +23,7 @@ export class House extends TypeDiv {
   private audioBoool = false;
   private ScreenBoool = true;
   private rotateBoool = true;
-  private N = styleObjArr[0].children[0].jpgNameArr.length;
+  private N = mannerList[0].children[0].jpgNameArr.length;
   private num = 1;
   private model!: Model;
   // private loading: any; // ElLoadingComponent;
@@ -48,8 +47,8 @@ export class House extends TypeDiv {
       name: 'house'
     });
     // created
-    this.styleArr = styleObjArr;
-    this.posArr = styleObjArr[0].children;
+    // this.styleArr = mannerList;
+    this.posArr = mannerList[0].children;
 
     this.menuWrapper = new Menu(this, {
       left: this.left,
@@ -72,9 +71,9 @@ export class House extends TypeDiv {
       this.numPanel,
       this.toolbar,
     );
-    this.mannerChoose = styleObjArr[0];
+    this.mannerChoose = mannerList[0];
     this.mannerItemChoose = this.menuWrapper.manner.children[1] as Division;
-    this.posChoose = styleObjArr[0].children[0];
+    this.posChoose = mannerList[0].children[0];
     this.posItemChoose = this.menuWrapper.pos.children[1] as Span;
     // this.loading = Toast.loading({
     //   duration: 0, // 持续展示 toast

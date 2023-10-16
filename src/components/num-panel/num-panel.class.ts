@@ -35,10 +35,7 @@ export class NumPanel extends TypeDiv {
       },
       childNodes: [
         {
-          TypeClass: TextNode,
-          config: {
-            title: config ? (config.num + ' / ' + config.N) : '0 / 0'
-          }
+          nodeValue: config ? (config.num + ' / ' + config.N) : '0 / 0'
         }
       ]
     })

@@ -1,5 +1,5 @@
 import {fromEvent} from "rxjs";
-import {Cursor, Division, Span, TextNode, TypeDiv} from "type-dom.ts";
+import {StyleCursor, Division, Span, TextNode, TypeDiv} from "type-dom.ts";
 import {House} from "../../views/house";
 import {IMenuConfig} from "./menu.interface";
 import {IManner} from "../../threejs/path";
@@ -35,17 +35,14 @@ export class Menu extends TypeDiv {
         styleObj: {
           padding: '5px 0',
           fontWeight: 'bold',
-          cursor: Cursor.default,
+          cursor: StyleCursor.default,
           display: 'inline-block',
           width: '12.5%',
         }
       },
       childNodes: [
         {
-          TypeClass: TextNode,
-          config: {
-            title: '风格:'
-          }
+          nodeValue: '风格:'
         }
       ]
     });
@@ -67,15 +64,12 @@ export class Menu extends TypeDiv {
         },
         styleObj: {
           fontWeight: 'bold',
-          cursor: Cursor.default
+          cursor: StyleCursor.default
         }
       },
       childNodes: [
         {
-          TypeClass: TextNode,
-          config: {
-            title: '位置:'
-          }
+          nodeValue: '位置:'
         }
       ]
     });
@@ -102,10 +96,7 @@ export class Menu extends TypeDiv {
         },
         childNodes: [
           {
-            TypeClass: TextNode,
-            config: {
-              title: manner.name,
-            }
+            nodeValue: manner.name,
           }
         ]
       });
@@ -130,10 +121,7 @@ export class Menu extends TypeDiv {
           },
           childNodes: [
             {
-              TypeClass: TextNode,
-              config: {
-                title: pos.name,
-              }
+              nodeValue: pos.name,
             }
           ]
         });
