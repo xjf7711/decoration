@@ -2,7 +2,7 @@ node_modules
 package-lock.json
 yarn.lock
 .DS_Store
-eslint_log.eslint_log
+eslint_log.log
 .idea
 dist
 lib

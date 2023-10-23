@@ -1,8 +1,8 @@
-import {fromEvent} from "rxjs";
-import {TypeDiv} from "type-dom.ts";
-import {House} from "../../views/house";
-import {ElArrowLeftSvg} from "type-dom-svgs";
-import {TdIcon} from "type-dom-ui/basic/td-icon/td-icon.class";
+import { fromEvent } from 'rxjs';
+import { TypeDiv } from 'type-dom.ts';
+import { House } from '../../views/house';
+import { ElArrowLeftSvg } from 'type-dom-svgs';
+import { TdIcon } from 'type-dom-ui/basic/td-icon/td-icon.class';
 export class Previous extends TypeDiv {
   className: 'Preview';
   constructor(public parent: House) {
@@ -26,7 +26,7 @@ export class Previous extends TypeDiv {
       width: '50px',
       height: '50px',
       color: '#fff'
-    })
+    });
     fromEvent(icon.dom, 'click').subscribe(() => this.parent.previewClick());
   }
 }

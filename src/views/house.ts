@@ -1,12 +1,12 @@
-import {Division, Img, Span, TypeDiv} from 'type-dom.ts';
+import { Division, Img, Span, TypeDiv } from 'type-dom.ts';
 import { AppRoot } from '../app-root';
 import Model from '../threejs/Model';
 import { IPlace, IManner, mannerList } from '../threejs/path';
-import {Menu} from "../components/menu/menu.class";
-import {Next} from "../components/next/next.class";
-import {Previous} from "../components/previous/previous.class";
-import {NumPanel} from "../components/num-panel/num-panel.class";
-import {Toolbar} from "../components/toolbar/toolbar.class";
+import { Menu } from '../components/menu/menu.class';
+import { Next } from '../components/next/next.class';
+import { Previous } from '../components/previous/previous.class';
+import { NumPanel } from '../components/num-panel/num-panel.class';
+import { Toolbar } from '../components/toolbar/toolbar.class';
 
 export class House extends TypeDiv {
   className: 'House';
@@ -60,10 +60,10 @@ export class House extends TypeDiv {
     this.numPanel = new NumPanel(this, {
       num: this.num,
       N: this.N
-    })
+    });
     this.toolbar = new Toolbar(this, {
       audioBool: this.audioBoool,
-    })
+    });
     this.addChildren(
       this.menuWrapper,
       this.nextWrapper,
@@ -90,15 +90,15 @@ export class House extends TypeDiv {
     this.left = this.width > 440 ? (this.width - 440) / 2 : 0;
     this.menuWrapper.setStyleObj({
       left: this.left + 'px',
-    })
+    });
     this.height = this.dom.clientHeight;
     console.log('this.height is ', this.height);
     this.nextWrapper.setStyleObj({
       top: this.height / 2 + 'px'
-    })
+    });
     this.preWrapper.setStyleObj({
       top: this.height / 2 + 'px'
-    })
+    });
     this.model = new Model();
     this.model.init(this.dom);
   }
@@ -107,13 +107,13 @@ export class House extends TypeDiv {
       this.audioBoool = false;
       audioImg.setAttrObj({
         src: './UI/关闭声音.png'
-      })
+      });
       this.model.audio.pause();
     } else {
       this.audioBoool = true;
       audioImg.setAttrObj({
         src: './UI/打开声音.png'
-      })
+      });
       this.model.audio.play();
     }
   }
@@ -122,13 +122,13 @@ export class House extends TypeDiv {
       this.ScreenBoool = false;
       screenImg.setAttrObj({
         src: './UI/退出全屏.png'
-      })
+      });
       this.model.events.requestFullScreen();
     } else {
       this.ScreenBoool = true;
       screenImg.setAttrObj({
         src: './UI/全屏5.png'
-      })
+      });
       this.model.events.exitFullscreen();
     }
   }
@@ -144,13 +144,13 @@ export class House extends TypeDiv {
       this.rotateBoool = false;
       rotateImg.setAttrObj({
         src: './UI/旋转.png'
-      })
+      });
       this.model.rotateBoool = false;
     } else {
       this.rotateBoool = true;
       rotateImg.setAttrObj({
         src: './UI/停止旋转.png'
-      })
+      });
       this.model.rotateBoool = true;
     }
   }
@@ -163,13 +163,13 @@ export class House extends TypeDiv {
     });
     this.model.box
       .material.map = this.model.textureLoader.load(
-      './风格/' + this.path,
-      () => {
+        './风格/' + this.path,
+        () => {
         // Toast.clear();
         // this.loading.close();
-        this.model.animation();
-      },
-    );
+          this.model.animation();
+        },
+      );
     this.model.animation();
   }
   nextClick() {
@@ -208,14 +208,14 @@ export class House extends TypeDiv {
     this.mannerChoose.styleObj.background = '';
     this.mannerItemChoose.setStyleObj({
       background: '',
-    })
+    });
     this.posChoose.styleObj.background = null;
     this.mannerChoose = styleObj;
     this.mannerItemChoose = mannerItem;
     this.mannerChoose.styleObj.background = '#409EFF';
     mannerItem.setStyleObj({
       background: '#409EFF',
-    })
+    });
     this.posArr = this.mannerChoose.children;
     this.menuWrapper.setPosList(this.posArr);
     this.menuWrapper.pos.render();
@@ -261,11 +261,11 @@ export class House extends TypeDiv {
     this.posChoose = posObj;
     this.posItemChoose.setStyleObj({
       background: '' // undefined 无效 todo ？？？？
-    })
+    });
     this.posItemChoose = posItem;
     posItem.setStyleObj({
       background: '#409EFF'
-    })
+    });
     this.N = this.posChoose.jpgNameArr.length;
     this.numPanel.setConfig({
       num: this.num,

@@ -1,5 +1,5 @@
-import {Division, Img, TypeDiv} from "type-dom.ts";
-import {Toolbar} from "./toolbar.class";
+import { Img, TypeDiv } from 'type-dom.ts';
+import { Toolbar } from './toolbar.class';
 export interface IToolbarItem {
   name: string,
   src: string,
@@ -23,8 +23,8 @@ export class ToolbarItem extends TypeDiv {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center'
-    })
-    this.img = this.createItem<Img>(this,{
+    });
+    this.img = this.createItem<Img>(this, {
       TypeClass: Img,
       config: {
         src: config.src,

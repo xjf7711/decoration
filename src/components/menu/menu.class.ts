@@ -1,8 +1,8 @@
-import {fromEvent} from "rxjs";
-import {StyleCursor, Division, Span, TextNode, TypeDiv} from "type-dom.ts";
-import {House} from "../../views/house";
-import {IMenuConfig} from "./menu.interface";
-import {IManner} from "../../threejs/path";
+import { fromEvent } from 'rxjs';
+import { StyleCursor, Division, Span, TypeDiv } from 'type-dom.ts';
+import { House } from '../../views/house';
+import { IMenuConfig } from './menu.interface';
+import { IManner } from '../../threejs/path';
 
 export class Menu extends TypeDiv {
   className: 'Menu';
@@ -50,7 +50,7 @@ export class Menu extends TypeDiv {
     this.pos.addAttrName('position');
     this.pos.addStyleObj({
       padding: '5px 0'
-    })
+    });
     this.createFirstPostItem();
     this.addChildren(this.manner, this.pos);
     config && this.setConfig(config);
@@ -77,7 +77,7 @@ export class Menu extends TypeDiv {
   setConfig(config: IMenuConfig) {
     this.addStyleObj({
       left: config.left + 'px'
-    })
+    });
     this.setMannerList(config.styleArr);
     this.setPosList(config.posArr);
   }

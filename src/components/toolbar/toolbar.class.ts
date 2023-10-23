@@ -1,8 +1,7 @@
-import {fromEvent} from "rxjs";
-import {Division, Img, TypeDiv} from "type-dom.ts";
-import {House} from "../../views/house";
-import {TdButton} from "type-dom-ui";
-import {ToolbarItem} from "./toolbar-item.class";
+import { fromEvent } from 'rxjs';
+import { TypeDiv } from 'type-dom.ts';
+import { House } from '../../views/house';
+import { ToolbarItem } from './toolbar-item.class';
 export interface IToolbar {
   audioBool: boolean
 }
@@ -10,7 +9,7 @@ export class Toolbar extends TypeDiv {
   className: 'Toolbar';
   constructor(public parent: House, config: IToolbar) {
     super();
-    this.className = "Toolbar";
+    this.className = 'Toolbar';
     this.addAttrName('toolbar');
     this.addStyleObj({
       position: 'absolute',

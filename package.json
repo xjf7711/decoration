@@ -10,7 +10,7 @@
     "js": "tsc",
     "test": "jest",
     "lint": "eslint src",
-    "lint-fix": "eslint 'src/**/*.{ts,js,tsx,jsx}' --fix -o eslint_log.log",
+    "lint-fix": "eslint src/**/*.{ts,js,tsx,jsx} --fix -o eslint_log.log",
     "uml": "tsuml2 --glob type-dom/type-node/web-element/*.ts ",
     "docs": "typedoc --entryPointStrategy expand ./src",
     "coverage": "typescript-coverage-report"

@@ -77,9 +77,9 @@ export default class Model {
             this.audio.setVolume(0.3);
           },
           (xhr: ProgressEvent) => {
-            // if (xhr.total === xhr.loaded) {
-            //   console.log('onProgress xhr.total === xhr.loaded.');
-            // }
+            if (xhr.total === xhr.loaded) {
+              console.log('onProgress xhr.total === xhr.loaded.');
+            }
           },
           () => {
             /**/

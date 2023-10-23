@@ -219,18 +219,18 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
     // @ts-ignore
     this.onMouseDown = (event: ThreeEvent) => {
-      if (this.enabled === false) { return; }
+      if (this.enabled === false) { return }
       event.preventDefault();
       if (event.button === this.mouseButtons.ORBIT) {
-        if (this.enableRotate === false) { return; }
+        if (this.enableRotate === false) { return }
         this.rotateStart.set(event.clientX, event.clientY);
         this.state = STATE.ROTATE;
       } else if (event.button === this.mouseButtons.ZOOM) {
-        if (this.enableZoom === false) { return; }
+        if (this.enableZoom === false) { return }
         this.dollyStart.set(event.clientX, event.clientY);
         this.state = STATE.DOLLY;
       } else if (event.button === this.mouseButtons.PAN) {
-        if (this.enablePan === false) { return; }
+        if (this.enablePan === false) { return }
         this.panStart.set(event.clientX, event.clientY);
         this.state = STATE.PAN;
       }
@@ -244,12 +244,12 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
     // @ts-ignore
     this.onMouseMove = (event: ThreeEvent) => {
-      if (this.enabled === false) { return; }
+      if (this.enabled === false) { return }
 
       event.preventDefault();
 
       if (this.state === STATE.ROTATE) {
-        if (this.enableRotate === false) { return; }
+        if (this.enableRotate === false) { return }
         this.rotateEnd.set(event.clientX, event.clientY);
         this.rotateDelta.subVectors(this.rotateEnd, this.rotateStart);
         const element =
@@ -269,7 +269,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
         this.update();
       } else if (this.state === STATE.DOLLY) {
-        if (this.enableZoom === false) { return; }
+        if (this.enableZoom === false) { return }
 
         this.dollyEnd.set(event.clientX, event.clientY);
         this.dollyDelta.subVectors(this.dollyEnd, this.dollyStart);
@@ -283,7 +283,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
         this.dollyStart.copy(this.dollyEnd);
         this.update();
       } else if (this.state === STATE.PAN) {
-        if (this.enablePan === false) { return; }
+        if (this.enablePan === false) { return }
 
         this.panEnd.set(event.clientX, event.clientY);
         this.panDelta.subVectors(this.panEnd, this.panStart);
@@ -295,7 +295,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
     // @ts-ignore
     this.onMouseUp = (event: ThreeEvent) => {
-      if (this.enabled === false) { return; }
+      if (this.enabled === false) { return }
       document.removeEventListener('mousemove', this.onMouseMove, false);
       document.removeEventListener('mouseup', this.onMouseUp, false);
 
@@ -309,7 +309,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
         this.enabled === false ||
         this.enableZoom === false ||
         (this.state !== STATE.NONE && this.state !== STATE.ROTATE)
-      ) { return; }
+      ) { return }
 
       event.preventDefault();
       event.stopPropagation();
@@ -332,7 +332,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
         this.enabled === false ||
         this.enableKeys === false ||
         this.enablePan === false
-      ) { return; }
+      ) { return }
 
       switch (event.keyCode) {
         case this.keys.UP:
@@ -356,12 +356,12 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
     // @ts-ignore
     this.onTouchStart = (event: ThreeEvent) => {
-      if (this.enabled === false) { return; }
+      if (this.enabled === false) { return }
 
       switch (event.touches.length) {
         // one-fingered touch: rotate
         case 1:
-          if (this.enableRotate === false) { return; }
+          if (this.enableRotate === false) { return }
 
           this.rotateStart.set(
             event.touches[0].pageX,
@@ -371,7 +371,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
           break;
         // two-fingered touch: dolly
         case 2:
-          if (this.enableZoom === false) { return; }
+          if (this.enableZoom === false) { return }
 
           const dx = event.touches[0].pageX - event.touches[1].pageX;
           const dy = event.touches[0].pageY - event.touches[1].pageY;
@@ -382,7 +382,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
           break;
         // three-fingered touch: pan
         case 3:
-          if (this.enablePan === false) { return; }
+          if (this.enablePan === false) { return }
 
           this.panStart.set(event.touches[0].pageX, event.touches[0].pageY);
           this.state = STATE.TOUCH_PAN;
@@ -399,15 +399,15 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
     // @ts-ignore
     this.onTouchMove = (event: ThreeEvent) => {
-      if (this.enabled === false) { return; }
+      if (this.enabled === false) { return }
       event.preventDefault();
       event.stopPropagation();
 
       switch (event.touches.length) {
         // one-fingered touch: rotate
         case 1:
-          if (this.enableRotate === false) { return; }
-          if (this.state !== STATE.TOUCH_ROTATE) { return; } // is this needed?...
+          if (this.enableRotate === false) { return }
+          if (this.state !== STATE.TOUCH_ROTATE) { return } // is this needed?...
 
           this.rotateEnd.set(event.touches[0].pageX, event.touches[0].pageY);
           this.rotateDelta.subVectors(this.rotateEnd, this.rotateStart);
@@ -437,8 +437,8 @@ export default class OrbitControls extends THREE.EventDispatcher {
           break;
         // two-fingered touch: dolly
         case 2:
-          if (this.enableZoom === false) { return; }
-          if (this.state !== STATE.TOUCH_DOLLY) { return; } // is this needed?...
+          if (this.enableZoom === false) { return }
+          if (this.state !== STATE.TOUCH_DOLLY) { return } // is this needed?...
 
           // console.log( 'handleTouchMoveDolly' );
           const dx = event.touches[0].pageX - event.touches[1].pageX;
@@ -461,8 +461,8 @@ export default class OrbitControls extends THREE.EventDispatcher {
           break;
         // three-fingered touch: pan
         case 3:
-          if (this.enablePan === false) { return; }
-          if (this.state !== STATE.TOUCH_PAN) { return; } // is this needed?...
+          if (this.enablePan === false) { return }
+          if (this.state !== STATE.TOUCH_PAN) { return } // is this needed?...
           this.panEnd.set(event.touches[0].pageX, event.touches[0].pageY);
           this.panDelta.subVectors(this.panEnd, this.panStart);
           this.pan(this.panDelta.x, this.panDelta.y);
@@ -476,7 +476,7 @@ export default class OrbitControls extends THREE.EventDispatcher {
     };
 
     this.onTouchEnd = (event: Event) => {
-      if (this.enabled === false) { return; }
+      if (this.enabled === false) { return }
       this.dispatchEvent(END_EVENT);
       this.state = STATE.NONE;
     };
