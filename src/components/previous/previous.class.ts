@@ -1,8 +1,8 @@
 import {fromEvent} from "rxjs";
-import {TypeDiv} from "type-dom.ts";
+import {TypeDiv} from "@type-dom/framework";
+import {ElArrowLeftSvg} from "@type-dom/svgs";
+import {TdIcon} from "@type-dom/ui";
 import {House} from "../../views/house";
-import {ElArrowLeftSvg} from "type-dom-svgs";
-import {TdIcon} from "type-dom-ui/basic/td-icon/td-icon.class";
 export class Previous extends TypeDiv {
   className: 'Preview';
   constructor(public parent: House) {

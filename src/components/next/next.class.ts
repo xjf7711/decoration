@@ -1,7 +1,6 @@
-import {TypeDiv} from "type-dom.ts";
-import {TdButton} from "type-dom-ui";
-import {ElArrowRightSvg} from "type-dom-svgs";
-import {TdIcon} from "type-dom-ui/basic/td-icon/td-icon.class";
+import {TypeDiv} from "@type-dom/framework";
+import {ElArrowRightSvg} from "@type-dom/svgs";
+import {TdIcon} from "@type-dom/ui";
 import {House} from "../../views/house";
 import {fromEvent} from "rxjs";
 

@@ -1,4 +1,4 @@
-import {Division, TextNode, TypeDiv} from "type-dom.ts";
+import {Division, TextNode, TypeDiv} from "@type-dom/framework";
 import {House} from "../../views/house";
 import {INumPanel} from "./num-panel.interface";
 

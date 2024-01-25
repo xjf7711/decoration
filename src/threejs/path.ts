@@ -1,4 +1,4 @@
-import {IStyle} from "type-dom.ts";
+import {IStyle} from "@type-dom/framework";
 
 export interface IPlace {
   name: string;

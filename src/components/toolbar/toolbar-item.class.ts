@@ -1,4 +1,4 @@
-import {Division, Img, TypeDiv} from "type-dom.ts";
+import {Division, Img, TypeDiv} from "@type-dom/framework";
 import {Toolbar} from "./toolbar.class";
 export interface IToolbarItem {
   name: string,

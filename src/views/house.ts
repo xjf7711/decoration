@@ -1,4 +1,4 @@
-import {Division, Img, Span, TypeDiv} from 'type-dom.ts';
+import {Division, Img, Span, TypeDiv} from '@type-dom/framework';
 import Model from '../threejs/Model';
 import { IPlace, IManner, mannerList } from '../threejs/path';
 import { AppRoot } from '../app-root';

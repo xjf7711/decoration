@@ -1,5 +1,5 @@
 import {fromEvent} from "rxjs";
-import {Cursor, Division, Span, TextNode, TypeDiv} from "type-dom.ts";
+import {StyleCursor, Division, Span, TextNode, TypeDiv} from "@type-dom/framework";
 import {House} from "../../views/house";
 import {IMenuConfig} from "./menu.interface";
 import {IManner} from "../../threejs/path";
@@ -24,7 +24,7 @@ export class Menu extends TypeDiv {
       maxWidth: '440px',
       height: '80px',
     });
-    this.manner = new Division(this);
+    this.manner = new Division();
     this.manner.addAttrName('manner');
     this.createItem<Division>(this.manner, {
       TypeClass: Division,
@@ -35,7 +35,7 @@ export class Menu extends TypeDiv {
         styleObj: {
           padding: '5px 0',
           fontWeight: 'bold',
-          cursor: Cursor.default,
+          cursor: StyleCursor.default,
           display: 'inline-block',
           width: '12.5%',
         }
@@ -49,7 +49,7 @@ export class Menu extends TypeDiv {
         }
       ]
     });
-    this.pos = new Division(this);
+    this.pos = new Division();
     this.pos.addAttrName('position');
     this.pos.addStyleObj({
       padding: '5px 0'
@@ -67,7 +67,7 @@ export class Menu extends TypeDiv {
         },
         styleObj: {
           fontWeight: 'bold',
-          cursor: Cursor.default
+          cursor: StyleCursor.default
         }
       },
       childNodes: [
