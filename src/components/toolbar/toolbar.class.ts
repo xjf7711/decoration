@@ -1,7 +1,7 @@
-import { fromEvent } from 'rxjs';
-import { TypeDiv } from 'type-dom.ts';
-import { House } from '../../views/house';
-import { ToolbarItem } from './toolbar-item.class';
+import {fromEvent} from "rxjs";
+import {Division, Img, TypeDiv} from "@type-dom/framework";
+import {House} from "../../views/house";
+import {ToolbarItem} from "./toolbar-item.class";
 export interface IToolbar {
   audioBool: boolean
 }

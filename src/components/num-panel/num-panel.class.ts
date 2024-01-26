@@ -1,6 +1,6 @@
-import { Division, TextNode, TypeDiv } from 'type-dom.ts';
-import { House } from '../../views/house';
-import { INumPanel } from './num-panel.interface';
+import {Division, TextNode, TypeDiv} from "@type-dom/framework";
+import {House} from "../../views/house";
+import {INumPanel} from "./num-panel.interface";
 
 export class NumPanel extends TypeDiv {
   className: 'NumPanel';
