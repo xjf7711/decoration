@@ -1,4 +1,5 @@
 import { fromEvent } from 'rxjs';
+console.log('main.ts .... ')
 import { AppRoot } from './app-root';
 import './styles/index.scss';
 import 'normalize.css';
