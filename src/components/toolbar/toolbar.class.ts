@@ -7,6 +7,10 @@ export interface IToolbar {
 }
 export class Toolbar extends TypeDiv {
   className: 'Toolbar';
+  private audioItem: ToolbarItem;
+  private screenItem: ToolbarItem;
+  private questionItem: ToolbarItem;
+  private rotateItem: ToolbarItem;
   constructor(public parent: House, config: IToolbar) {
     super();
     this.className = 'Toolbar';
@@ -16,34 +20,36 @@ export class Toolbar extends TypeDiv {
       right: '20px',
       top: '60px'
     });
-    const audioItem = new ToolbarItem(this, {
+    this.audioItem = new ToolbarItem(this, {
       name: 'audio',
       src: './UI/关闭声音.png',
       height: '20',
       width: '20'
     });
-    fromEvent(audioItem.dom, 'click').subscribe(() => this.parent.audioClick(audioItem.img));
-    const screenItem = new ToolbarItem(this, {
+    this.screenItem = new ToolbarItem(this, {
       name: 'screen',
       src: './UI/全屏5.png',
       width: '18',
       height: '18'
     });
-    fromEvent(screenItem.dom, 'click').subscribe(() => this.parent.screenClick(screenItem.img));
-    const rotateItem = new ToolbarItem(this, {
+    this.rotateItem = new ToolbarItem(this, {
       name: 'rotate',
       src: './UI/停止旋转.png',
       height: '20',
       width: '20'
     });
-    fromEvent(rotateItem.dom, 'click').subscribe(() => this.parent.rotateClick(rotateItem.img));
-    const questionItem = new ToolbarItem(this, {
+    this.questionItem = new ToolbarItem(this, {
       name: 'question',
       src: './UI/帮助5.png',
       height: '22',
       width: '22'
     });
-    fromEvent(questionItem.dom, 'click').subscribe(() => this.parent.questionClick());
-    this.addChildren(audioItem, screenItem, rotateItem, questionItem);
+    this.addChildren(this.audioItem, this.screenItem, this.rotateItem, this.questionItem);
+  }
+  initEvents() {
+    fromEvent(this.audioItem.dom, 'click').subscribe(() => this.parent.audioClick(this.audioItem.img));
+    fromEvent(this.screenItem.dom, 'click').subscribe(() => this.parent.screenClick(this.screenItem.img));
+    fromEvent(this.rotateItem.dom, 'click').subscribe(() => this.parent.rotateClick(this.rotateItem.img));
+    fromEvent(this.questionItem.dom, 'click').subscribe(() => this.parent.questionClick());
   }
 }

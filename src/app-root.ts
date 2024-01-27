@@ -20,7 +20,9 @@ export class AppRoot extends TypeRoot {
     this.events = [];
     const house = new House(this);
     this.addChild(house);
+    console.log('house.dom is ', house.dom);
     this.render();
+    this.mount(editorEl);
     house.initModel();
   }
 }

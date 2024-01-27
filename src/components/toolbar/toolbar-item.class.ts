@@ -1,6 +1,6 @@
-import {Division, Img, TypeDiv} from "@type-dom/framework";
+import { Img, TypeDiv } from "@type-dom/framework";
 import {Toolbar} from "./toolbar.class";
-export interface IToolbarItem {
+export interface IToolbarItemConfig {
   name: string,
   src: string,
   width: string,
@@ -9,7 +9,7 @@ export interface IToolbarItem {
 export class ToolbarItem extends TypeDiv {
   className: 'ToolbarItem';
   img: Img;
-  constructor(public parent: Toolbar, config: IToolbarItem) {
+  constructor(public parent: Toolbar, config: IToolbarItemConfig) {
     super();
     this.className = 'ToolbarItem';
     this.addAttrName(config.name);
@@ -24,13 +24,12 @@ export class ToolbarItem extends TypeDiv {
       justifyContent: 'center',
       alignItems: 'center'
     });
-    this.img = this.createItem<Img>(this, {
-      TypeClass: Img,
-      config: {
-        src: config.src,
-        height: config.height,
-        width: config.width
-      }
-    });
+    this.img = new Img(this);
+    this.img.addAttrObj({
+      src: config.src,
+      height: config.height,
+      width: config.width
+    })
+    this.addChild(this.img);
   }
 }
