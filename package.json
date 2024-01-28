@@ -41,6 +41,7 @@
     "babel-loader": "^9.1.2",
     "clean-webpack-plugin": "^4.0.0",
     "compression-webpack-plugin": "^10.0.0",
+    "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "eslint": "^8.51.0",
@@ -70,12 +71,13 @@
     "webpack-merge": "^5.9.0"
   },
   "dependencies": {
-    "normalize.css": "^8.0.1",
-    "rxjs": "^7.8.1",
-    "three": "^0.125.0",
     "@type-dom/framework": "^0.0.8",
     "@type-dom/svgs": "0.0.1",
-    "@type-dom/ui": "0.0.1"
+    "@type-dom/ui": "0.0.1",
+    "@type-dom/utils": "^0.0.4",
+    "normalize.css": "^8.0.1",
+    "rxjs": "^7.8.1",
+    "three": "^0.125.0"
   },
   "typeCoverage": {
     "atLeast": 99,

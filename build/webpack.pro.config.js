@@ -4,16 +4,30 @@
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
   output: {
     filename: '[name].[chunkhash].js',
     publicPath: './',
   },
   plugins: [
-    new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: 'public',
+          // 使用 glob 模式来排除 index.html
+          globOptions: {
+            ignore: ['**/index.html'],
+          },
+          to: '' // 复制到输出目录的根目录
+        }
+      ]
+    })
   ],
   optimization: {
+    usedExports: true,
+    concatenateModules: true,
     moduleIds: 'deterministic', // 未变化的 hash 都应该保持一致
     runtimeChunk: 'single', // 拆包 runtime
     splitChunks: {

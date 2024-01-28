@@ -37,8 +37,8 @@ module.exports = {
     // library 一般是结合dll使用
     library: {
       // 整个库向外暴露的变量名
-      name: 'TypeDomApp',
-      type: 'umd',
+      name: 'Decoration',
+      type: 'commonjs',
       // export: 'type-dom-app' // default umd
     },
     // libraryTarget: 'window' // 变量名添加到哪个全局上，browser浏览器端添加到window上
