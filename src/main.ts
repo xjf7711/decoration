@@ -1,9 +1,7 @@
 import {fromEvent} from 'rxjs';
-
-console.log('main.ts .... ')
+import 'normalize.css';
 import {AppRoot} from './app-root';
 import './styles/index.scss';
-import 'normalize.css';
 
 fromEvent(document, 'DOMContentLoaded').subscribe(e => {
   // console.log('document DOMContentLoaded, e is ', e);

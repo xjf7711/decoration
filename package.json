@@ -22,8 +22,8 @@
     "webpack",
     "TypeDom",
     "type-dom",
-    "type-dom-svgs",
-    "type-dom-ui",
+    "type-dom/svgs",
+    "type-dom/ui",
     "Class based programming"
   ],
   "author": "Xu",
@@ -75,9 +75,7 @@
     "three": "^0.125.0",
     "@type-dom/framework": "^0.0.7",
     "@type-dom/svgs": "0.0.1",
-    "@type-dom/ui": "0.0.1",
-    "@type-dom/asn1": "^0.0.1",
-    "@type-dom/utils": "^0.0.2"
+    "@type-dom/ui": "0.0.1"
   },
   "typeCoverage": {
     "atLeast": 99,
