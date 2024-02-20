@@ -8,7 +8,8 @@
     // 编译的目标是什么版本的
     /* 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
-    "target": "ES2015", // ES2015这样打包后校验的属性不能动态显示。
+    "target": "ES2015",
+    // ES2015这样打包后校验的属性不能动态显示。
     // 指定生成哪个模块系统代码
     /* 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
@@ -17,11 +18,11 @@
     /* lib用于指定要包含在编译中的库文件 */
     /* Specify library files to be included in the compilation. */
     "lib": [
-//      "es5",
-//      "es2015",
-//      "es2016",
-//      "es2017",
-//      "es2018",
+      //      "es5",
+      //      "es2015",
+      //      "es2016",
+      //      "es2017",
+      //      "es2018",
       "dom",
       "ESNext"
     ],
@@ -34,13 +35,13 @@
     // "checkJs": true,
     /* 指定jsx代码用于的开发环境: 'preserve', 'react-native', or 'react'. */
     /* Specify JSX code generation: 'preserve', 'react-native', or 'react'. */
-     "jsx": "preserve",
+    "jsx": "preserve",
     // 是否自动创建类型声明文件
     /* declaration的值为true或false，用来指定是否在编译的时候生成相应的".d.ts"声明文件。
         如果设为true，编译每个ts文件之后会生成一个js文件和一个声明文件。
         但是declaration和allowJs不能同时设为true */
     /* Generates corresponding '.d.ts' file. */
-//     "declaration": true,
+    //     "declaration": true,
     // 类型声明文件的输出目录
     //    "declarationDir": "./dist/types",
     /* declarationMap值为true或false，指定是否为声明文件.d.ts生成map文件 */
@@ -67,7 +68,7 @@
     // "tsBuildInfoFile": "./",               /* Specify file to store incremental compilation information */
     /* removeComments的值为true或false，用于指定是否将编译后的文件中的注释删掉，设为true的话即删掉注释，默认为false */
     /* Do not emit comments to output. */
-     "removeComments": true,
+    "removeComments": true,
     /* 不生成编译文件，这个一般比较少用 */
     /* Do not emit outputs. */
     // "noEmit": true,
@@ -111,7 +112,8 @@
 
     /* Module Resolution Options */
     /* 用于选择模块解析策略，有'node'和'classic'两种类型' */
-    "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
+    "moduleResolution": "node",
+    /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     /* baseUrl用于设置解析非相对模块名称的基本目录，相对模块不会受baseUrl的影响 */
     "baseUrl": "./",
     // 工作根目录                  /* Base directory to resolve non-absolute module names. */
@@ -134,7 +136,8 @@
     //指定引入的类型声明文件，默认是自动引入所有声明文件，一旦指定该选项，则会禁用自动引入，改为只引入指定的类型声明文件，如果指定空数组[]则不引用任何文件
     // "types": [],                           /* Type declaration files to be included in compilation. */
     /* 用来指定允许从没有默认导出的模块中默认导入 */
-     "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
+    "allowSyntheticDefaultImports": true,
+    /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     /* 通过为导入内容创建命名空间，实现CommonJS和ES模块之间的互操作性 */
     /* Enables emit interoperability between CommonJS and ES Modules via creation of namespace objects for all imports. Implies 'allowSyntheticDefaultImports'. */
     "esModuleInterop": true,
@@ -154,13 +157,17 @@
 
     /* Experimental Options */
     /* 用于指定是否启用实验性的装饰器特性 */
-     "experimentalDecorators": true,   // 启用实验性的ES装饰器      /* Enables experimental support for ES7 decorators. */
+    "experimentalDecorators": true,
+    // 启用实验性的ES装饰器      /* Enables experimental support for ES7 decorators. */
     /* 用于指定是否为装饰器提供元数据支持，关于元数据，也是ES6的新标准，可以通过Reflect提供的静态方法获取元数据，如果需要使用Reflect的一些方法，需要引入ES2015.Reflect这个库 */
     // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
-    "forceConsistentCasingInFileNames": true, // 禁止对同一个文件的不一致的引用。
-//    "resolveJsonModule": true, // 允许从 .json 中导入、导出其类型 TS5071: Option '--resolveJsonModule' can only be specified when module code generation is 'commonjs', 'amd', 'es2015' or 'esNext'.
-    "skipLibCheck": true, // 忽略所有的声明文件（*.d.ts）的类型检查。
-    "noLib": false // 不包含默认的库文件（lib.d.ts）。
+    "forceConsistentCasingInFileNames": true,
+    // 禁止对同一个文件的不一致的引用。
+    //    "resolveJsonModule": true, // 允许从 .json 中导入、导出其类型 TS5071: Option '--resolveJsonModule' can only be specified when module code generation is 'commonjs', 'amd', 'es2015' or 'esNext'.
+    "skipLibCheck": true,
+    // 忽略所有的声明文件（*.d.ts）的类型检查。
+    "noLib": false
+    // 不包含默认的库文件（lib.d.ts）。
   },
   // 指定一个匹配列表（属于自动指定该路径下的所有ts相关文件）
   // include也可以指定要编译的路径列表，但是和files的区别在于，这里的路径可以是文件夹，也可以是文件，
@@ -191,7 +198,9 @@
   // 一个对象数组，指定要引用的项目
   //  "references": [],
   "typedocOptions": {
-    "entryPoints": ["src/**/*.ts"],
+    "entryPoints": [
+      "src/**/*.ts"
+    ],
     "out": "docs"
   }
 }

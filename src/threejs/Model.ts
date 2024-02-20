@@ -15,12 +15,14 @@ import {
 } from 'three';
 import BaseThree from './BaseThree';
 import Events from './Events';
+
 // import {Toast} from 'vant';
 
 interface IBox extends Mesh {
   mesh: SphereGeometry;
   material: MeshBasicMaterial;
 }
+
 export default class Model {
   public rotateBoool = true;
   public audio!: Audio;
@@ -35,6 +37,7 @@ export default class Model {
   private renderer!: WebGLRenderer;
   private scene!: Scene;
   private camera!: PerspectiveCamera;
+
   public init($el: HTMLElement) {
     console.log('model init .');
     const baseObj = new BaseThree();
@@ -50,6 +53,7 @@ export default class Model {
 
     // window.onresize = () => this.events.onresizeFun();
   }
+
   public initModel() {
     console.log('initModel begins . ');
     const boxGeo = new SphereGeometry(250, 50, 50);

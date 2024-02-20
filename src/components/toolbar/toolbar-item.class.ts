@@ -1,14 +1,17 @@
 import {Division, Img, TypeDiv} from "@type-dom/framework";
 import {Toolbar} from "./toolbar.class";
+
 export interface IToolbarItem {
   name: string,
   src: string,
   width: string,
   height: string
 }
+
 export class ToolbarItem extends TypeDiv {
   className: 'ToolbarItem';
   img: Img;
+
   constructor(public parent: Toolbar, config: IToolbarItem) {
     super();
     this.className = 'ToolbarItem';

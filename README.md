@@ -16,7 +16,6 @@
 
 > 6、单元测试npx ts-jest config:init
 
-
 ## 项目运行
 
 > 1、安装环境：yarn install

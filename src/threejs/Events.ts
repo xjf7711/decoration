@@ -1,5 +1,6 @@
-import { WebGLRenderer, PerspectiveCamera } from 'three';
+import {WebGLRenderer, PerspectiveCamera} from 'three';
 import BaseThree from './BaseThree';
+
 export default class Events {
   private $el!: HTMLElement;
   private renderer!: WebGLRenderer;
@@ -13,6 +14,7 @@ export default class Events {
     this.renderer = baseObj.renderer;
     window.onresize = () => this.onresizeFun();
   }
+
   public onresizeFun() {
     // console.log('onresizeFun begins. ');
     const width = this.$el.clientWidth;
@@ -34,6 +36,7 @@ export default class Events {
     //   de.webkitRequestFullScreen()
     // }
   }
+
   public exitFullscreen() {
     const de = document;
     if (de.exitFullscreen) {
