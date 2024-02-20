@@ -73,7 +73,7 @@
     "normalize.css": "^8.0.1",
     "rxjs": "^7.8.1",
     "three": "^0.125.0",
-    "@type-dom/framework": "^0.0.7",
+    "@type-dom/framework": "^0.0.8",
     "@type-dom/svgs": "0.0.1",
     "@type-dom/ui": "0.0.1"
   },

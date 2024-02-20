@@ -38,7 +38,7 @@ export class House extends TypeDiv {
     super();
     console.log('house constructor . ');
     this.className = 'House';
-    this.setStyleObj({
+    this.addStyleObj({
       width: '100vw',
       height: '100vh',
       textAlign: 'center',
