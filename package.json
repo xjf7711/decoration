@@ -7,7 +7,7 @@
     "serve": "webpack-dev-server --mode=development --config ./build/webpack.config.js",
     "build": "webpack --mode=production --config ./build/webpack.config.js",
     "lib": "webpack --mode=none --config ./build/webpack.lib.config.js",
-    "pages": "gh-pages -d dist",
+    "deploy": "gh-pages -d dist",
     "js": "tsc",
     "test": "jest",
     "lint": "eslint src",
