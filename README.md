@@ -38,7 +38,9 @@
 ## 框架介绍
 
     1、技术栈
-        –	虚拟DOM：TypeNode
+        –	type-dom/framework
+        –	type-dom/svgs
+        –	type-dom/ui
         –	webpack
         –	typescript
         –	抽象类
@@ -58,4 +60,7 @@
             –	views 页面布局
         –	test
 
+## todo
+
+    打包时，如何避免全部引用 type-dom/svgs,type-dom/ui
 

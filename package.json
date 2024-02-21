@@ -1,5 +1,6 @@
 {
   "name": "decoration",
+  "sideEffects": false,
   "version": "0.0.1",
   "description": "使用threejs基于TypeDom框架，仿照网上的例子写的室内装修的3D全景图。",
   "main": "src/main.ts",
@@ -72,7 +73,7 @@
   },
   "dependencies": {
     "@type-dom/framework": "^0.0.8",
-    "@type-dom/svgs": "0.0.1",
+    "@type-dom/svgs": "0.0.3",
     "@type-dom/ui": "0.0.1",
     "@type-dom/utils": "^0.0.4",
     "normalize.css": "^8.0.1",
