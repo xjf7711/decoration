@@ -1,4 +1,3 @@
-
 export interface IMenuConfig {
   left: number,
   styleArr: any[],

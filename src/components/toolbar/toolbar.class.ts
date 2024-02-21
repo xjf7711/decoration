@@ -1,10 +1,12 @@
 import {fromEvent} from "rxjs";
-import {Division, Img, TypeDiv} from "@type-dom/framework";
+import {TypeDiv} from "@type-dom/framework";
 import {House} from "../../views/house";
 import {ToolbarItem} from "./toolbar-item.class";
+
 export interface IToolbar {
   audioBool: boolean
 }
+
 export class Toolbar extends TypeDiv {
   className: 'Toolbar';
   private audioItem: ToolbarItem;

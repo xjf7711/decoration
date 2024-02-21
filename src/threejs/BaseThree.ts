@@ -1,4 +1,4 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, Clock } from 'three';
+import {Scene, PerspectiveCamera, WebGLRenderer, Clock} from 'three';
 import OrbitControls from './controls/OrbitControls';
 
 export default class BaseThree {
@@ -9,6 +9,7 @@ export default class BaseThree {
   public $el!: HTMLElement;
   public width = 400;
   public height = 300;
+
   public init($el: HTMLElement) {
     // console.log('BaseThree init .');
     this.$el = $el;
@@ -24,6 +25,7 @@ export default class BaseThree {
   public initScene() {
     this.scene = new Scene();
   }
+
   public initCamera() {
     const camera = new PerspectiveCamera(60, this.width / this.height, 1, 1000);
     camera.zoom = 1;
@@ -32,6 +34,7 @@ export default class BaseThree {
     camera.lookAt(this.scene.position);
     this.camera = camera;
   }
+
   public initRenderer() {
     const renderer = new WebGLRenderer({
       antialias: true,
@@ -40,11 +43,13 @@ export default class BaseThree {
     this.$el.appendChild(renderer.domElement);
     this.renderer = renderer;
   }
+
   public initControl() {
     const controls = new OrbitControls(this.camera, this.renderer.domElement);
     controls.enablePan = false;
     controls.maxDistance = 80;
   }
+
   public renderScene() {
     this.renderer.render(this.scene, this.camera);
   }

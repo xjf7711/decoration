@@ -4,24 +4,25 @@
       <van-row>
         <van-col span="3" style="font-weight:bold;cursor:default;">风格:</van-col>
         <van-col
-                span="3"
+          span="3"
           v-for="obj in styleArr"
           :key="obj.name"
           :style="obj.styleObj"
           @click="styleClick(obj)"
-          >{{ obj.name }}</van-col
+        >{{ obj.name }}
+        </van-col
         >
       </van-row>
       <div>
         <span style="font-weight:bold; cursor:default;">位置:</span>
         <template v-for="obj in posArr">
           <span
-                  style="padding: 5px 5px"
+            style="padding: 5px 5px"
             v-if="obj.jpgNameArr.length"
             :key="obj.name"
             :style="obj.styleObj"
             @click="posClick(obj)"
-            >{{ obj.name }}</span
+          >{{ obj.name }}</span
           >
         </template>
       </div>
@@ -95,7 +96,7 @@
       </van-button>
       <van-button type="danger" circle @click="questionClick()">
         <i>
-          <img :src="'./UI/帮助5.png'" alt="" width="22" height="22" />
+          <img :src="'./UI/帮助5.png'" alt="" width="22" height="22"/>
         </i>
       </van-button>
     </div>
@@ -103,11 +104,11 @@
 </template>
 
 <script lang='ts'>
-import { Component, Vue, Watch } from 'vue-property-decorator';
-import { MeshBasicMaterial, Texture } from 'three';
-import { Toast, Dialog } from 'vant';
+import {Component, Vue, Watch} from 'vue-property-decorator';
+import {MeshBasicMaterial, Texture} from 'three';
+import {Toast, Dialog} from 'vant';
 import Model from '@/threejs/Model';
-import { IPlace, IStyle, path } from '@/threejs/path';
+import {IPlace, IStyle, path} from '@/threejs/path';
 
 const styleObjArr = path();
 @Component
@@ -128,6 +129,7 @@ export default class House extends Vue {
   private model!: Model;
   private loading: any; // ElLoadingComponent;
   private left: number = 0;
+
   @Watch('num')
   private onNumChange() {
     this.loading = Toast.loading({

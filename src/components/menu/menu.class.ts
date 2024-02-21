@@ -1,9 +1,8 @@
-
 import {fromEvent} from "rxjs";
-import {StyleCursor, Division, Span, TextNode, TypeDiv} from "@type-dom/framework";
+import {StyleCursor, Division, Span, TypeDiv} from "@type-dom/framework";
+import {IManner} from "../../threejs/path";
 import {House} from "../../views/house";
 import {IMenuConfig} from "./menu.interface";
-import {IManner} from "../../threejs/path";
 
 export class Menu extends TypeDiv {
   className: 'Menu';
@@ -56,6 +55,7 @@ export class Menu extends TypeDiv {
     this.addChildren(this.manner, this.pos);
     config && this.setConfig(config);
   }
+
   createFirstPostItem() {
     this.createItem(this.pos, {
       TypeClass: Span,
@@ -75,6 +75,7 @@ export class Menu extends TypeDiv {
       ]
     });
   }
+
   setConfig(config: IMenuConfig) {
     this.addStyleObj({
       left: config.left + 'px'
@@ -82,6 +83,7 @@ export class Menu extends TypeDiv {
     this.setMannerList(config.styleArr);
     this.setPosList(config.posArr);
   }
+
   setMannerList(mannerList: IManner[]) {
     for (const manner of mannerList) {
       console.log('manner is ', manner);
@@ -104,6 +106,7 @@ export class Menu extends TypeDiv {
       fromEvent(mannerItem.dom, 'click').subscribe(() => this.parent.mannerClick(manner, mannerItem));
     }
   }
+
   setPosList(posList: any[]) {
     this.pos.clearChildNodes();
     this.pos.clearChildDom();

@@ -4,6 +4,7 @@ import {INumPanel} from "./num-panel.interface";
 
 export class NumPanel extends TypeDiv {
   className: 'NumPanel';
+
   constructor(public parent: House, config: INumPanel) {
     super();
     this.className = 'NumPanel';
@@ -40,6 +41,7 @@ export class NumPanel extends TypeDiv {
       ]
     });
   }
+
   setConfig(config: INumPanel) {
     (this.children[0].children[0] as TextNode).setText(config.num + ' / ' + config.N);
   }

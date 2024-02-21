@@ -1,12 +1,12 @@
 import {Division, Img, Span, TypeDiv} from '@type-dom/framework';
-import { AppRoot } from '../app-root';
+import {AppRoot} from '../app-root';
 import Model from '../threejs/Model';
-import { IPlace, IManner, mannerList } from '../threejs/path';
-import { Menu } from '../components/menu/menu.class';
-import { Next } from '../components/next/next.class';
-import { Previous } from '../components/previous/previous.class';
-import { NumPanel } from '../components/num-panel/num-panel.class';
-import { Toolbar } from '../components/toolbar/toolbar.class';
+import {IPlace, IManner, mannerList} from '../threejs/path';
+import {Menu} from '../components/menu/menu.class';
+import {Next} from '../components/next/next.class';
+import {Previous} from '../components/previous/previous.class';
+import {NumPanel} from '../components/num-panel/num-panel.class';
+import {Toolbar} from '../components/toolbar/toolbar.class';
 
 export class House extends TypeDiv {
   className: 'House';
@@ -33,6 +33,7 @@ export class House extends TypeDiv {
   private readonly preWrapper: Previous;
   private readonly numPanel: NumPanel;
   private readonly toolbar: Toolbar;
+
   constructor(public parent: AppRoot) {
     super();
     console.log('house constructor . ');
@@ -82,6 +83,7 @@ export class House extends TypeDiv {
     //   // message: 'Loading',
     // });
   }
+
   initModel() {
     console.log('initModel . ');
     // mounted
@@ -102,6 +104,7 @@ export class House extends TypeDiv {
     this.model = new Model();
     this.model.init(this.dom);
   }
+
   audioClick(audioImg: Img) {
     if (this.audioBoool) {
       this.audioBoool = false;
@@ -117,6 +120,7 @@ export class House extends TypeDiv {
       this.model.audio.play();
     }
   }
+
   screenClick(screenImg: Img) {
     if (this.ScreenBoool) {
       this.ScreenBoool = false;
@@ -132,6 +136,7 @@ export class House extends TypeDiv {
       this.model.events.exitFullscreen();
     }
   }
+
   questionClick() {
     // Dialog.alert({
     //   title: '旋转操作',
@@ -139,6 +144,7 @@ export class House extends TypeDiv {
     // });
     // this.$alert('按住左键不放上下左右拖动，可以旋转整个场景', '旋转操作', {})
   }
+
   rotateClick(rotateImg: Img) {
     if (this.rotateBoool) {
       this.rotateBoool = false;
@@ -154,6 +160,7 @@ export class House extends TypeDiv {
       this.model.rotateBoool = true;
     }
   }
+
   resetNum() {
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     console.log('this.path is ', this.path);
@@ -163,15 +170,16 @@ export class House extends TypeDiv {
     });
     this.model.box
       .material.map = this.model.textureLoader.load(
-        './风格/' + this.path,
-        () => {
+      './风格/' + this.path,
+      () => {
         // Toast.clear();
         // this.loading.close();
-          this.model.animation();
-        },
-      );
+        this.model.animation();
+      },
+    );
     this.model.animation();
   }
+
   nextClick() {
     console.log('nextClick . ');
     if (this.num < this.N) {
@@ -190,6 +198,7 @@ export class House extends TypeDiv {
     }
     this.resetNum();
   }
+
   mannerClick(styleObj: IManner, mannerItem: Division) {
     console.log('styleClick . styleObj is ', styleObj);
     // this.loading = Toast.loading({

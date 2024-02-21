@@ -1,8 +1,8 @@
-import { fromEvent } from 'rxjs';
-console.log('main.ts .... ')
-import { AppRoot } from './app-root';
-import './styles/index.scss';
+import {fromEvent} from 'rxjs';
 import 'normalize.css';
+import {AppRoot} from './app-root';
+import './styles/index.scss';
+
 fromEvent(document, 'DOMContentLoaded').subscribe(e => {
   // console.log('document DOMContentLoaded, e is ', e);
   const el = document.querySelector('#app-ref') as HTMLElement;

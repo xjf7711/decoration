@@ -1,5 +1,6 @@
-import { TypeRoot } from '@type-dom/framework';
-import { House } from './views/house';
+import {TypeRoot} from '@type-dom/framework';
+import {House} from './views/house';
+
 /**
  * 应用类，挂载全局属性和方法。
  * 根节点，继承 TypeRoot;
@@ -8,8 +9,9 @@ import { House } from './views/house';
 export class AppRoot extends TypeRoot {
   className: 'AppRoot';
   static el: HTMLElement;
+
   constructor(editorEl: HTMLElement) {
-    super({ el: editorEl });
+    super({el: editorEl});
     this.className = 'AppRoot';
     this.addAttrName('app-root');
     // this.addStyleObj({

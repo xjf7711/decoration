@@ -1,4 +1,5 @@
 import {IStyle} from "@type-dom/framework";
+
 export interface IPlace {
   name: string;
   styleObj: {

@@ -6,6 +6,7 @@ import {House} from "../../views/house";
 
 export class Next extends TypeDiv {
   className: 'Next';
+
   constructor(public parent: House) {
     super();
     this.className = 'Next';

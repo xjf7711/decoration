@@ -397,7 +397,6 @@ module.exports = {
     ],
 
 
-
     //
     //
     // 严格模式
@@ -408,7 +407,6 @@ module.exports = {
       'error',
       'never'
     ],
-
 
 
     //
@@ -499,7 +497,6 @@ module.exports = {
     // 禁止使用 node 中的同步的方法，比如 fs.readFileSync
     // @off 使用很常见
     'no-sync': 'off',
-
 
 
     //
@@ -897,7 +894,6 @@ module.exports = {
     // @fixable 正则表达式必须有括号包起来
     // @off 没必要限制
     'wrap-regex': 'off',
-
 
 
     //

@@ -6,6 +6,7 @@ export interface IToolbarItemConfig {
   width: string,
   height: string
 }
+
 export class ToolbarItem extends TypeDiv {
   className: 'ToolbarItem';
   img: Img;
