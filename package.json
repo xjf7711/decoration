@@ -8,6 +8,7 @@
     "build": "webpack --mode=production --config ./build/webpack.config.js",
     "lib": "webpack --mode=none --config ./build/webpack.lib.config.js",
     "deploy": "gh-pages -d dist",
+    "pages": "git subtree push --prefix=dist origin gh-pages",
     "js": "tsc",
     "test": "jest",
     "lint": "eslint src",
