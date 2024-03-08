@@ -11,7 +11,7 @@ import {
   Scene,
   SphereGeometry,
   TextureLoader,
-  WebGLRenderer,
+  WebGLRenderer
 } from 'three';
 import BaseThree from './BaseThree';
 import Events from './Events';
@@ -23,7 +23,7 @@ interface IBox extends Mesh {
   material: MeshBasicMaterial;
 }
 
-export default class Model {
+export class Model {
   public rotateBoool = true;
   public audio!: Audio;
   public box!: IBox;
@@ -59,21 +59,21 @@ export default class Model {
     const boxGeo = new SphereGeometry(250, 50, 50);
     const material = new MeshBasicMaterial({
       color: 0xffffff,
-      side: BackSide,
+      side: BackSide
     });
-    this.box = new Mesh(boxGeo, material) as IBox;
+    this.box = new Mesh(boxGeo, material) as unknown as IBox;
     this.scene.add(this.box);
     const listener = new AudioListener();
     this.audio = new Audio(listener);
     this.textureLoader = new TextureLoader();
     this.box.material.map = this.textureLoader.load(
-      './风格/中式/客餐厅/00125.jpg',
+      './assets/风格/中式/客餐厅/00125.jpg',
       () => {
         this.loaded = true;
         // vm.loading.close();
         const audioLoader = new AudioLoader();
         audioLoader.load(
-          './音乐/琵琶语.mp3',
+          './assets/音乐/琵琶语.mp3',
           (audioBuffer: AudioBuffer) => {
             // Toast.clear();
             this.audio.setBuffer(audioBuffer);
@@ -87,11 +87,11 @@ export default class Model {
           },
           () => {
             /**/
-          },
+          }
         );
         // render()
         this.animation();
-      },
+      }
     );
     // let width = window.innerWidth;
     // let height = window.innerHeight;

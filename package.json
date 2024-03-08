@@ -36,7 +36,7 @@
     "@babel/preset-react": "^7.22.15",
     "@types/file-saver": "^2.0.3",
     "@types/jest": "^29.5.5",
-    "@types/three": "^0.125.0",
+    "@types/three": "^0.162.0",
     "@typescript-eslint/eslint-plugin": "^6.7.5",
     "@typescript-eslint/parser": "^6.7.5",
     "autoprefixer": "^10.4.16",
@@ -73,12 +73,13 @@
     "webpack-merge": "^5.9.0"
   },
   "dependencies": {
-    "@type-dom/framework": "^0.0.8",
-    "@type-dom/svgs": "0.0.3",
-    "@type-dom/ui": "0.0.1",
+    "@type-dom/framework": "0.0.10",
+    "@type-dom/svgs": "^0.0.6",
+    "@type-dom/ui": "0.0.2",
+    "@type-dom/utils": "^0.0.6",
     "normalize.css": "^8.0.1",
     "rxjs": "^7.8.1",
-    "three": "^0.125.0"
+    "three": "^0.162.0"
   },
   "typeCoverage": {
     "atLeast": 99,

@@ -1,4 +1,4 @@
-import {WebGLRenderer, PerspectiveCamera} from 'three';
+import { WebGLRenderer, PerspectiveCamera } from 'three';
 import BaseThree from './BaseThree';
 
 export default class Events {

@@ -1,4 +1,4 @@
-import {Scene, PerspectiveCamera, WebGLRenderer, Clock} from 'three';
+import { Scene, PerspectiveCamera, WebGLRenderer } from 'three';
 import OrbitControls from './controls/OrbitControls';
 
 export default class BaseThree {
@@ -37,7 +37,7 @@ export default class BaseThree {
 
   public initRenderer() {
     const renderer = new WebGLRenderer({
-      antialias: true,
+      antialias: true
     });
     renderer.setSize(this.width, this.height);
     this.$el.appendChild(renderer.domElement);

@@ -34,7 +34,7 @@
 
 > 8、代码检查：yarn ts-coverage
 
-## 框架介绍
+## 项目介绍
 
     1、技术栈
         –	虚拟DOM：TypeNode
@@ -47,8 +47,9 @@
         –	build
         –	public
         –	src
+            –	app
+            –	assets
             –	components
-            –	styles
             –	threejs:
                 –	controls
                 –	BaseThree.ts
