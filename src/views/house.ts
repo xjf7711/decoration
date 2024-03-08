@@ -1,13 +1,15 @@
-import {Division, Img, Span, TypeDiv} from '@type-dom/framework';
-import {AppRoot} from '../app-root';
-import Model from '../threejs/Model';
-import {IPlace, IManner, mannerList} from '../threejs/path';
-import {Menu} from '../components/menu/menu.class';
-import {Next} from '../components/next/next.class';
-import {Previous} from '../components/previous/previous.class';
-import {NumPanel} from '../components/num-panel/num-panel.class';
-import {Toolbar} from '../components/toolbar/toolbar.class';
+import { Division, Img, ITypeConfig, Span, TypeDiv } from '@type-dom/framework';
+import { Model } from '../threejs/Model';
+import { IPlace, IManner, mannerList } from '../assets/path';
+import { Menu } from '../components/menu/menu.class';
+import { Next } from '../components/next/next.class';
+import { Previous } from '../components/previous/previous.class';
+import { NumPanel } from '../components/num-panel/num-panel.class';
+import { Toolbar } from '../components/toolbar/toolbar.class';
 
+interface IHouseConfig extends ITypeConfig {
+  el: HTMLElement
+}
 export class House extends TypeDiv {
   className: 'House';
   private readonly styleArr = mannerList;
@@ -34,14 +36,14 @@ export class House extends TypeDiv {
   private readonly numPanel: NumPanel;
   private readonly toolbar: Toolbar;
 
-  constructor(public parent: AppRoot) {
+  constructor(config: IHouseConfig) {
     super();
     console.log('house constructor . ');
     this.className = 'House';
     this.addStyleObj({
       width: '100vw',
       height: '100vh',
-      textAlign: 'center',
+      textAlign: 'center'
     });
     this.addAttrObj({
       zIndex: 105,
@@ -51,26 +53,26 @@ export class House extends TypeDiv {
     // this.styleArr = mannerList;
     this.posArr = mannerList[0].children;
 
-    this.menuWrapper = new Menu(this, {
+    this.menuWrapper = new Menu({
+      parent: this,
       left: this.left,
       styleArr: this.styleArr,
       posArr: this.posArr
     });
     this.nextWrapper = new Next(this);
     this.preWrapper = new Previous(this);
-    this.numPanel = new NumPanel(this, {
+    this.numPanel = new NumPanel({
+      // parent: this,
       num: this.num,
       N: this.N
     });
-    this.toolbar = new Toolbar(this, {
-      audioBool: this.audioBoool,
-    });
+    this.toolbar = new Toolbar(this);
     this.addChildren(
       this.menuWrapper,
       this.nextWrapper,
       this.preWrapper,
       this.numPanel,
-      this.toolbar,
+      this.toolbar
     );
     this.mannerChoose = mannerList[0];
     this.mannerItemChoose = this.menuWrapper.manner.children[1] as Division;
@@ -82,6 +84,12 @@ export class House extends TypeDiv {
     //   loadingType: 'spinner',
     //   // message: 'Loading',
     // });
+
+    // 渲染
+    this.render();
+    // 挂载
+    this.mount(config.el);
+    this.initModel();
   }
 
   initModel() {
@@ -91,7 +99,7 @@ export class House extends TypeDiv {
     console.log('this.width is ', this.width);
     this.left = this.width > 440 ? (this.width - 440) / 2 : 0;
     this.menuWrapper.setStyleObj({
-      left: this.left + 'px',
+      left: this.left + 'px'
     });
     this.height = this.dom.clientHeight;
     console.log('this.height is ', this.height);
@@ -109,13 +117,13 @@ export class House extends TypeDiv {
     if (this.audioBoool) {
       this.audioBoool = false;
       audioImg.setAttrObj({
-        src: './UI/关闭声音.png'
+        src: './assets/UI/关闭声音.png'
       });
       this.model.audio.pause();
     } else {
       this.audioBoool = true;
       audioImg.setAttrObj({
-        src: './UI/打开声音.png'
+        src: './assets/UI/打开声音.png'
       });
       this.model.audio.play();
     }
@@ -125,13 +133,13 @@ export class House extends TypeDiv {
     if (this.ScreenBoool) {
       this.ScreenBoool = false;
       screenImg.setAttrObj({
-        src: './UI/退出全屏.png'
+        src: './assets/UI/退出全屏.png'
       });
       this.model.events.requestFullScreen();
     } else {
       this.ScreenBoool = true;
       screenImg.setAttrObj({
-        src: './UI/全屏5.png'
+        src: './assets/UI/全屏5.png'
       });
       this.model.events.exitFullscreen();
     }
@@ -149,13 +157,13 @@ export class House extends TypeDiv {
     if (this.rotateBoool) {
       this.rotateBoool = false;
       rotateImg.setAttrObj({
-        src: './UI/旋转.png'
+        src: './assets/UI/旋转.png'
       });
       this.model.rotateBoool = false;
     } else {
       this.rotateBoool = true;
       rotateImg.setAttrObj({
-        src: './UI/停止旋转.png'
+        src: './assets/UI/停止旋转.png'
       });
       this.model.rotateBoool = true;
     }
@@ -164,18 +172,18 @@ export class House extends TypeDiv {
   resetNum() {
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     console.log('this.path is ', this.path);
-    this.numPanel.setConfig({
+    this.numPanel.setNum({
       num: this.num,
       N: this.N
     });
     this.model.box
       .material.map = this.model.textureLoader.load(
-      './风格/' + this.path,
+      './assets/风格/' + this.path,
       () => {
         // Toast.clear();
         // this.loading.close();
         this.model.animation();
-      },
+      }
     );
     this.model.animation();
   }
@@ -216,14 +224,14 @@ export class House extends TypeDiv {
     this.num = 1;
     this.mannerChoose.styleObj.background = '';
     this.mannerItemChoose.setStyleObj({
-      background: '',
+      background: ''
     });
-    this.posChoose.styleObj.background = null;
+    this.posChoose.styleObj.background = undefined;
     this.mannerChoose = styleObj;
     this.mannerItemChoose = mannerItem;
     this.mannerChoose.styleObj.background = '#409EFF';
     mannerItem.setStyleObj({
-      background: '#409EFF',
+      background: '#409EFF'
     });
     this.posArr = this.mannerChoose.children;
     this.menuWrapper.setPosList(this.posArr);
@@ -231,23 +239,23 @@ export class House extends TypeDiv {
     this.posChoose = this.posArr[0];
     this.posItemChoose = this.menuWrapper.pos.children[1] as Span;
     this.posItemChoose.setStyleObj({
-      background: '#409EFF',
+      background: '#409EFF'
     });
     this.posArr[0].styleObj.background = '#409EFF';
     this.N = this.posChoose.jpgNameArr.length;
-    this.numPanel.setConfig({
+    this.numPanel.setNum({
       num: this.num,
       N: this.N
     });
     this.classPath = this.mannerChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     this.model.box.material.map = this.model.textureLoader.load(
-      './风格/' + this.path,
+      './assets/风格/' + this.path,
       () => {
         // Toast.clear();
         // this.loading.close();
         this.model.animation();
-      },
+      }
     );
   }
 
@@ -266,7 +274,7 @@ export class House extends TypeDiv {
     //   background: 'rgba(0, 0, 0, 0.7)'
     // });
     this.num = 1;
-    this.posChoose.styleObj.background = null;
+    this.posChoose.styleObj.background = undefined;
     this.posChoose = posObj;
     this.posItemChoose.setStyleObj({
       background: '' // undefined 无效 todo ？？？？
@@ -276,7 +284,7 @@ export class House extends TypeDiv {
       background: '#409EFF'
     });
     this.N = this.posChoose.jpgNameArr.length;
-    this.numPanel.setConfig({
+    this.numPanel.setNum({
       num: this.num,
       N: this.N
     });
@@ -284,12 +292,12 @@ export class House extends TypeDiv {
     this.classPath = this.mannerChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     this.model.box.material.map = this.model.textureLoader.load(
-      './风格/' + this.path,
+      './assets/风格/' + this.path,
       () => {
         // Toast.clear();
         // this.loading.close();
         this.model.animation();
-      },
+      }
     );
   }
 }

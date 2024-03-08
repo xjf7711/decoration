@@ -1,14 +1,15 @@
-import {fromEvent} from "rxjs";
-import {StyleCursor, Division, Span, TypeDiv} from "@type-dom/framework";
-import {IManner} from "../../threejs/path";
-import {House} from "../../views/house";
-import {IMenuConfig} from "./menu.interface";
+import { fromEvent } from 'rxjs';
+import { StyleCursor, Division, Span, TypeDiv } from '@type-dom/framework';
+import { IManner, IPlace } from '../../assets/path';
+import { House } from '../../views/house';
+import { IMenuConfig } from './menu.interface';
 
 export class Menu extends TypeDiv {
   className: 'Menu';
   manner: Division; // 风格
   pos: Division; // 位置
-  constructor(public parent: House, config?: IMenuConfig) {
+  parent!: House; // 挂载的父级
+  constructor(config: IMenuConfig) {
     super();
     this.className = 'Menu';
     this.addAttrName('menu');
@@ -22,13 +23,13 @@ export class Menu extends TypeDiv {
       zIndex: 102,
       width: '100vw',
       maxWidth: '440px',
-      height: '80px',
+      height: '80px'
     });
     this.manner = new Division();
     this.manner.addAttrName('manner');
-    this.createItem<Division>(this.manner, {
-      TypeClass: Division,
-      propObj: {
+    this.manner.addChild(
+      new Division({
+        text: '风格:',
         attrObj: {
           title: '风格'
         },
@@ -37,46 +38,18 @@ export class Menu extends TypeDiv {
           fontWeight: 'bold',
           cursor: StyleCursor.default,
           display: 'inline-block',
-          width: '12.5%',
+          width: '12.5%'
         }
-      },
-      childNodes: [
-        {
-          nodeValue: '风格:'
-        }
-      ]
-    });
+      })
+    );
     this.pos = new Division();
     this.pos.addAttrName('position');
     this.pos.addStyleObj({
       padding: '5px 0'
     });
+    this.setConfig(config); // 设置配置,要先挂载parent
     this.createFirstPostItem();
     this.addChildren(this.manner, this.pos);
-    config && this.setConfig(config);
-  }
-
-  createFirstPostItem() {
-    this.createItem(this.pos, {
-      TypeClass: Span,
-      propObj: {
-        attrObj: {
-          name: 'position'
-        },
-        styleObj: {
-          fontWeight: 'bold',
-          cursor: StyleCursor.default
-        }
-      },
-      childNodes: [
-        {
-          nodeValue: '位置:'
-        }
-      ]
-    });
-  }
-
-  setConfig(config: IMenuConfig) {
     this.addStyleObj({
       left: config.left + 'px'
     });
@@ -84,51 +57,52 @@ export class Menu extends TypeDiv {
     this.setPosList(config.posArr);
   }
 
+  createFirstPostItem() {
+    this.pos.addChild(new Span({
+      text: '位置:',
+      attrObj: {
+        name: 'position'
+      },
+      styleObj: {
+        fontWeight: 'bold',
+        cursor: StyleCursor.default
+      }
+    }))
+  }
+
   setMannerList(mannerList: IManner[]) {
     for (const manner of mannerList) {
       console.log('manner is ', manner);
       manner.styleObj.width = '12.5%';
       manner.styleObj.display = 'inline-block';
-      const mannerItem = this.createItem<Division>(this.manner, {
-        TypeClass: Division,
-        propObj: {
-          attrObj: {
-            title: manner.name,
-          },
-          styleObj: manner.styleObj
+      const mannerItem = new Division({
+        text: manner.name,
+        attrObj: {
+          title: manner.name
         },
-        childNodes: [
-          {
-            nodeValue: manner.name,
-          }
-        ]
+        styleObj: manner.styleObj
       });
+      this.manner.addChild(mannerItem);
       fromEvent(mannerItem.dom, 'click').subscribe(() => this.parent.mannerClick(manner, mannerItem));
     }
   }
 
-  setPosList(posList: any[]) {
-    this.pos.clearChildNodes();
-    this.pos.clearChildDom();
+  setPosList(posList: IPlace[]): void  {
+    this.pos.clearChildren();
     this.createFirstPostItem();
     for (const pos of posList) {
       if (pos.jpgNameArr.length) {
         const styleObj = pos.styleObj;
         styleObj.padding = '5px 5px';
-        const posItem = this.createItem<Span>(this.pos, {
-          TypeClass: Span,
-          propObj: {
-            attrObj: {
-              title: pos.name,
-            },
-            styleObj: pos.styleObj
+
+        const posItem = new Span({
+          text: pos.name,
+          attrObj: {
+            title: pos.name
           },
-          childNodes: [
-            {
-              nodeValue: pos.name,
-            }
-          ]
+          styleObj: pos.styleObj,
         });
+        this.pos.addChild(posItem);
         fromEvent(posItem.dom, 'click').subscribe(() => this.parent.posClick(pos, posItem));
       }
     }
