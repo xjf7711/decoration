@@ -174,12 +174,13 @@ module.exports = {
     // 多个html页面
     new HtmlWebpackPlugin({
       template: './src/index.html', // 把哪个html文件打包到dist目录中
-      title: 'typescript start',
+      title: 'decoration start',
       filename: 'index.html', // 输出什么名字 默认 index.html
       // chunks: ['advertisement', 'commCss', 'dom', 'utils'], // todo ??? 当前页面所需要哪些模块 模块引入顺序和入口设置时的先后有关
       minify: {
         collapseWhitespace: true
       },
+      base:  { href: './' }, // 这里设置你的基本路径，它会被插入到 <base> 标签的 href 属性中
       hash: true
     }),
     // 提取css
