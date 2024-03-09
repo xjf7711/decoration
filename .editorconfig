@@ -1,35 +1,22 @@
-# http://editorconfig.org
-
-# top-most EditorConfig file
+# 告诉EditorConfig插件，这是根文件，不用继续往上查找
 root = true
 
-# Unix-style newlines with a newline ending every file
+# 匹配全部文件
 [*]
+# 设置字符集
 charset = utf-8
+# 缩进风格，可选space、tab
+indent_style = space
+# 缩进的空格数
+indent_size = 2
+# 结尾换行符，可选lf、cr、crlf
 end_of_line = lf
+# 在文件结尾插入新行
 insert_final_newline = true
+# 删除一行中的前后空格
 trim_trailing_whitespace = true
 
-# Indentation override for js(x), ts(x) and vue files
-[*.{js,jsx,ts,tsx,vue}]
-indent_size = 2
-indent_style = space
-
-# Indentation override for css related files
-[*.{css,styl,scss,less,sass}]
-indent_size = 2
-indent_style = space
-
-# Indentation override for html files
-[*.html]
-indent_size = 2
-indent_style = space
-
-# Trailing space override for markdown file
+# 匹配md结尾的文件
 [*.md]
+insert_final_newline = false
 trim_trailing_whitespace = false
-
-# Indentation override for config files
-[*.{json,yml}]
-indent_size = 2
-indent_style = space

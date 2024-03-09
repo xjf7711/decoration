@@ -67,13 +67,13 @@ export class Model {
     this.audio = new Audio(listener);
     this.textureLoader = new TextureLoader();
     this.box.material.map = this.textureLoader.load(
-      './assets/风格/中式/客餐厅/00125.jpg',
+      'assets/风格/中式/客餐厅/00125.jpg',
       () => {
         this.loaded = true;
         // vm.loading.close();
         const audioLoader = new AudioLoader();
         audioLoader.load(
-          './assets/音乐/琵琶语.mp3',
+          'assets/音乐/琵琶语.mp3',
           (audioBuffer: AudioBuffer) => {
             // Toast.clear();
             this.audio.setBuffer(audioBuffer);

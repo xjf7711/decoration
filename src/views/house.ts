@@ -117,13 +117,13 @@ export class House extends TypeDiv {
     if (this.audioBoool) {
       this.audioBoool = false;
       audioImg.setAttrObj({
-        src: './assets/UI/关闭声音.png'
+        src: 'assets/UI/关闭声音.png'
       });
       this.model.audio.pause();
     } else {
       this.audioBoool = true;
       audioImg.setAttrObj({
-        src: './assets/UI/打开声音.png'
+        src: 'assets/UI/打开声音.png'
       });
       this.model.audio.play();
     }
@@ -133,13 +133,13 @@ export class House extends TypeDiv {
     if (this.ScreenBoool) {
       this.ScreenBoool = false;
       screenImg.setAttrObj({
-        src: './assets/UI/退出全屏.png'
+        src: 'assets/UI/退出全屏.png'
       });
       this.model.events.requestFullScreen();
     } else {
       this.ScreenBoool = true;
       screenImg.setAttrObj({
-        src: './assets/UI/全屏5.png'
+        src: 'assets/UI/全屏5.png'
       });
       this.model.events.exitFullscreen();
     }
@@ -157,13 +157,13 @@ export class House extends TypeDiv {
     if (this.rotateBoool) {
       this.rotateBoool = false;
       rotateImg.setAttrObj({
-        src: './assets/UI/旋转.png'
+        src: 'assets/UI/旋转.png'
       });
       this.model.rotateBoool = false;
     } else {
       this.rotateBoool = true;
       rotateImg.setAttrObj({
-        src: './assets/UI/停止旋转.png'
+        src: 'assets/UI/停止旋转.png'
       });
       this.model.rotateBoool = true;
     }
@@ -178,7 +178,7 @@ export class House extends TypeDiv {
     });
     this.model.box
       .material.map = this.model.textureLoader.load(
-      './assets/风格/' + this.path,
+      'assets/风格/' + this.path,
       () => {
         // Toast.clear();
         // this.loading.close();
@@ -250,7 +250,7 @@ export class House extends TypeDiv {
     this.classPath = this.mannerChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     this.model.box.material.map = this.model.textureLoader.load(
-      './assets/风格/' + this.path,
+      'assets/风格/' + this.path,
       () => {
         // Toast.clear();
         // this.loading.close();
@@ -292,7 +292,7 @@ export class House extends TypeDiv {
     this.classPath = this.mannerChoose.name + '/' + this.posChoose.name;
     this.path = this.classPath + '/' + this.posChoose.jpgNameArr[this.num - 1];
     this.model.box.material.map = this.model.textureLoader.load(
-      './assets/风格/' + this.path,
+      'assets/风格/' + this.path,
       () => {
         // Toast.clear();
         // this.loading.close();

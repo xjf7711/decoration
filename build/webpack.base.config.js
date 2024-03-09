@@ -11,35 +11,36 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-// const TerserPlugin = require('terser-webpack-plugin');
-// const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 // 生成压缩文件，需要服务器支持
 // const CompressionPlugin = require('compression-webpack-plugin');
 
 // 查看当前是哪种模式
-console.log('当前模式', process.argv); // process.env.NODE_ENV);
+console.log('当前模式', process.argv[3]); // process.env.NODE_ENV);
 
 module.exports = {
-  // 入口 (单个入口 或多个入口),现在是多入口
+  // 入口 (单个入口 或多个入口)
   entry: {
     app: './src/main.ts',
+    // 正式使用时，这个要注掉
+    // editor: './src/index.ts',
+    // test: './src/test.ts',
   },
   // 出口
   output: {
     // 文件名称（指定名称+目录）
-    filename: '[name].js', // '[name].[fullhash:8].js',
+    filename: '[name].[fullhash:8].js',
     // 输出文件目录（将来所有资源输出的公共目录）
     path: path.resolve(__dirname, '../dist'),
     clean: true,
     // 所有资源引入公共路径前缀 --> 'imgs/a.jpg' --> '/imgs/a.jpg'
     publicPath: '/',
-    // chunkFilename: 'lib/[name]_chunk.js', // 自定义非入口chunk的名称 没有任何作用
+    // chunkFilename: 'js/[name]_chunk.js', // 自定义非入口chunk的名称
     // library 一般是结合dll使用
     library: {
-      // 整个库向外暴露的变量名
-      name: 'Decoration',
-      type: 'commonjs',
-      // export: 'type-dom-app' // default umd
+      name: 'DecorationApp', // 整个库向外暴露的变量名
+      type: 'umd', // default umd
+      export: 'DecorationApp'
     },
     // libraryTarget: 'window' // 变量名添加到哪个全局上，browser浏览器端添加到window上
     // libraryTarget: 'global' // 变量名添加到哪个全局上，node服务端添加到global上
@@ -50,7 +51,8 @@ module.exports = {
     // 配置解析模块路径别名: 优点 简写路径 缺点 写路径时没有提示
     // alias: {
     //   // $css: path.resolve(__dirname, 'src/css'),
-    //   src: path.resolve(__dirname, '../src')
+    //   // src: path.resolve(__dirname, '../src')
+    //   assets: path.resolve(__dirname, '../src/assets')
     // },
     // 配置省略文件路径的后缀名，引用文件时，后缀名就可以省略了
     extensions: ['.js', '.ts', '.tsx'] // '.json', '.css'],
@@ -93,10 +95,13 @@ module.exports = {
             options: {
               importLoaders: 1
             }
+          },
+          {
+            loader: 'postcss-loader'
           }
         ]
       },
-      // less
+      // less todo scss
       {
         test: /\.less$/,
         use: [
@@ -107,6 +112,7 @@ module.exports = {
             }
           },
           'css-loader',
+          'postcss-loader',   // 处理css兼容性
           'less-loader'
         ]
       },
@@ -124,6 +130,7 @@ module.exports = {
               importLoaders: 2
             }
           },
+          'postcss-loader',   // 处理css兼容性
           {
             loader: 'sass-loader' // 将 Sass 编译成 CSS
           }
@@ -154,28 +161,24 @@ module.exports = {
           outputPath: 'fonts' // 输出目录
         }
       },
+
       // es6转es5
       {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/ // 不要处理node_modules
-      }
+      },
     ]
   },
   plugins: [
-    //  Error: clean-webpack-plugin only accepts an options object. See:
-    // https://github.com/johnagan/clean-webpack-plugin#options-and-defaults-optional
-    // at new CleanWebpackPlugin (\node_modules\clean-webpack-plugin\dist\clean-webpack-plugin.js:
-    // new CleanWebpackPlugin(),
     // 多个html页面
     new HtmlWebpackPlugin({
       template: './src/index.html', // 把哪个html文件打包到dist目录中
-      title: 'decoration app',
-      filename: 'index.html', // 输出什么名字 默认index.html
+      title: 'typescript start',
+      filename: 'index.html', // 输出什么名字 默认 index.html
       // chunks: ['advertisement', 'commCss', 'dom', 'utils'], // todo ??? 当前页面所需要哪些模块 模块引入顺序和入口设置时的先后有关
       minify: {
-        collapseWhitespace: true,
-        removeComments: true,
+        collapseWhitespace: true
       },
       hash: true
     }),
@@ -221,11 +224,11 @@ module.exports = {
       // eval 会包裹 modules，通过 eval("string")，而 minimizer 不会处理字符串。
       // cheap 不存在列信息，minimizer 只产生单行，只会留下一个映射。
       // 使用支持的 devtool 值可以生成 source map。
-      // new TerserPlugin()
+      new TerserPlugin()
     ]
   },
   // 模式   development  production
-  mode: process.env.NODE_ENV === 'dev' ? 'development' : 'production',
+  // mode: process.env.NODE_ENV === 'dev' ? 'development' : 'production',
   // 通过 webpack-dev-server 的这些配置，能够以多种方式改变其行为。
   devServer: {
     // 该选项允许将允许访问开发服务器的服务列入白名单。
@@ -300,21 +303,6 @@ module.exports = {
     // },
     // 端口号
     port: 8001,
-    //  boolean string [string] object [object]
-    // 该配置项允许配置从目录提供静态文件的选项（默认是 'public' 文件夹）。
-    // 将其设置为 false 以禁用：
-    // static: false,
-    // 监听单个目录：
-    // static: ['assets'],
-    // 监听多个进后台资源目录：
-    // static: ['src/assets', 'css'],
-    // static: {
-    //   //  string = path.join(process.cwd(), 'public')
-    //   assetsPublicPath: '/',
-    //   assetsSubDirectory: 'static',
-    //   // 告诉服务器从哪里提供内容。只有在你希望提供静态文件时才需要这样做。static.publicPath 将会被用来决定应该从哪里提供 bundle，并具有优先级。
-    //   directory: path.join(__dirname, 'src/assets'),
-    // },
   },
   devtool: false
 };

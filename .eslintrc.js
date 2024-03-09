@@ -397,6 +397,7 @@ module.exports = {
     ],
 
 
+
     //
     //
     // 严格模式
@@ -407,6 +408,7 @@ module.exports = {
       'error',
       'never'
     ],
+
 
 
     //
@@ -455,14 +457,17 @@ module.exports = {
     //   }
     // ],
     // 变量必须先定义后使用
-    // 'no-use-before-define': [
-    //   'error',
-    //   {
-    //     functions: false,
-    //     classes: false,
-    //     variables: true
-    //   }
-    // ],
+    'no-use-before-define': [
+      'error',
+      {
+        functions: false,
+        classes: false,
+        variables: false
+      }
+    ],
+
+
+
     //
     //
     // Node.js 和 CommonJS
@@ -497,6 +502,7 @@ module.exports = {
     // 禁止使用 node 中的同步的方法，比如 fs.readFileSync
     // @off 使用很常见
     'no-sync': 'off',
+
 
 
     //
@@ -896,6 +902,7 @@ module.exports = {
     'wrap-regex': 'off',
 
 
+
     //
     //
     // ECMAScript 6
@@ -955,7 +962,7 @@ module.exports = {
     'no-useless-rename': 'error',
     // @fixable 禁止使用 var
     'no-var': 'error',
-    // 'no-var-requires': 'off',
+    'no-var-requires': 'off',
     // @fixable 必须使用 a = {b} 而不是 a = {b: b}
     // @off 没必要强制要求
     'object-shorthand': 'off',

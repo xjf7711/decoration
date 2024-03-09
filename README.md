@@ -1,8 +1,3 @@
-## 项目说明
-
-> 使用threejs，基于type-dom框架，仿照网上的例子写的室内装修的3D全景图。
-
-## 项目环境
 
 > 1、全局和本地安装TypeScript
 
@@ -16,51 +11,4 @@
 
 > 6、单元测试npx ts-jest config:init
 
-## 项目运行
-
-> 1、安装环境：yarn install
-
-> 2、运行项目： yarn serve
-
-> 3、生成js版本项目代码: yarn js
-
-> 4、打包项目： yarn build
-
-> 5、生成库： yarn lib
-
-> 6、生成类图： yarn uml
-
-> 7、生成文档：yarn docs
-
-> 8、代码检查：yarn ts-coverage
-
-## 项目介绍
-
-    1、技术栈
-        –	type-dom/framework
-        –	type-dom/svgs
-        –	type-dom/ui
-        –	webpack
-        –	typescript
-        –	抽象类
-        –	实体类
-        –	rxjs
-    2、项目结构
-        –	build
-        –	public
-        –	src
-            –	app
-            –	assets
-            –	components
-            –	threejs:
-                –	controls
-                –	BaseThree.ts
-                –	Model.ts
-                –	path.ts
-            –	views 页面布局
-        –	test
-
-## todo
-
-    打包时，如何避免全部引用 type-dom/svgs,type-dom/ui
-
+>

@@ -22,28 +22,28 @@ export class Toolbar extends TypeDiv {
     this.audioItem = new ToolbarItem({
       parent: this,
       name: 'audio',
-      src: './assets/UI/关闭声音.png',
+      src: 'assets/UI/关闭声音.png',
       height: '20',
       width: '20'
     });
     this.screenItem = new ToolbarItem({
       parent: this,
       name: 'screen',
-      src: './assets/UI/全屏5.png',
+      src: 'assets/UI/全屏5.png',
       width: '18',
       height: '18'
     });
     this.rotateItem = new ToolbarItem({
       parent: this,
       name: 'rotate',
-      src: './assets/UI/停止旋转.png',
+      src: 'assets/UI/停止旋转.png',
       height: '20',
       width: '20'
     });
     this.questionItem = new ToolbarItem({
       parent: this,
       name: 'question',
-      src: './assets/UI/帮助5.png',
+      src: 'assets/UI/帮助5.png',
       height: '22',
       width: '22'
     });
