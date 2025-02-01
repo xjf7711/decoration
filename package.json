@@ -70,17 +70,16 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
-    "@type-dom/framework": "0.0.10",
-    "@type-dom/svgs": "^0.0.6",
-    "@type-dom/ui": "0.0.2",
-    "@type-dom/utils": "^0.0.6",
+    "@type-dom/framework": "*",
+    "@type-dom/svgs": "*",
+    "@type-dom/ui": "*",
+    "@type-dom/utils": "*",
     "axios": "^0.21.1",
     "file-saver": "^2.0.5",
     "jsbarcode": "^3.11.4",
     "jscodeshift": "^0.14.0",
     "jszip": "^3.7.1",
     "normalize.css": "^8.0.1",
-    "rxjs": "^7.3.0",
     "three": "^0.162.0"
   },
   "typeCoverage": {

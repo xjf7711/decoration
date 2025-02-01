@@ -180,7 +180,12 @@ module.exports = {
       minify: {
         collapseWhitespace: true
       },
-      base:  { href: './' }, // 这里设置你的基本路径，它会被插入到 <base> 标签的 href 属性中
+      // inject: true, // 注入生成的脚本到页面中
+      // templateParameters: {
+      //   // baseHref: './', // 传递 baseHref 参数给模板
+      //   base:  { href: './' },
+      // },
+      // base:  { href: './' }, // 这里设置你的基本路径，它会被插入到 <base> 标签的 href 属性中
       hash: true
     }),
     // 提取css
