@@ -1,3 +1,4 @@
+import { createApp } from '@type-dom/framework';
 import { House } from '../views/house';
 import './app.element.scss';
 
@@ -9,15 +10,22 @@ export class AppElement extends HTMLElement {
     this.style.display = 'block';
     this.style.width = '100vw';
     this.style.height = '100vh';
-    const house = new House({
-      el: this,
-      name: title,
-    });
-    console.log('house.dom is ', house.dom);
-    const buff: string[] = [];
-    house.dump(buff);
-    console.log('appRoot.dump() buff.join("") is ', buff.join(''));
+    // const house = new House({
+    //   name: title
+    // });
+    createApp(new House({ name: title })).mount(this);
+    // new App({
+    //   slot: new House({
+    //     name: title
+    //   })
+    // }).mount(this);
+    // house.mount(this);
+    // house.initModel();
+    // console.log('house.dom is ', house.dom);
+    // const buff: string[] = [];
+    // house.dump(buff);
+    // console.log('appRoot.dump() buff.join("") is ', buff.join(''));
   }
 }
 
-customElements.define('decoration-app', AppElement);
+customElements.define('decoration-root', AppElement);

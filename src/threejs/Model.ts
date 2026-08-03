@@ -24,7 +24,7 @@ interface IBox extends Mesh {
 }
 
 export class Model {
-  public rotateBoool = true;
+  public rotateBool = true;
   public audio!: Audio;
   public box!: IBox;
   public textureLoader!: TextureLoader;
@@ -106,7 +106,7 @@ export class Model {
     this.timeS = this.timeS + rendTime;
     if (this.timeS > this.refreshTime) {
       this.renderer.render(this.scene, this.camera);
-      if (this.rotateBoool) {
+      if (this.rotateBool) {
         this.box.rotateY(0.002);
       }
       this.timeS = 0;

@@ -1,6 +1,6 @@
-import { ITypeConfig } from '@type-dom/framework';
+import { TypeProps } from '@type-dom/framework';
 
-export interface INumPanel extends ITypeConfig {
+export interface INumPanel extends TypeProps {
   num: number,
   N: number
 }

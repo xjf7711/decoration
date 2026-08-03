@@ -1,15 +1,15 @@
-import { Division, TextNode, TypeDiv } from '@type-dom/framework';
+import { addAttrName, addStyleObj, Div, TypeDiv } from '@type-dom/framework';
 import { INumPanel } from './num-panel.interface';
 
 export class NumPanel extends TypeDiv {
   className: 'NumPanel';
-  textNode: TextNode;
+  // override textNode: TextNode;
 
-  constructor(config: INumPanel) {
+  constructor(params: INumPanel) {
     super();
     this.className = 'NumPanel';
-    this.addAttrName('num-panel');
-    this.addStyleObj({
+    addAttrName(this, 'num-panel');
+    addStyleObj(this, {
       color: '#00ffff',
       width: '60px',
       height: '60px',
@@ -23,23 +23,21 @@ export class NumPanel extends TypeDiv {
       justifyContent: 'center',
       alignItems: 'center'
     });
-    this.textNode = new TextNode(config ? (config.num + ' / ' + config.N) : '0 / 0')
-    this.addChild(new Division({
+    // this.textNode = new TextNode(params ? (params.num + ' / ' + params.N) : '0 / 0');
+    this.addChild(new Div({
       attrObj: {
         name: 'num'
       },
       styleObj: {
         width: '60px',
         textAlign: 'center',
-        fontSize: '14px',
+        fontSize: '14px'
       },
-      childNodes: [
-        this.textNode,
-      ]
-    }))
+      slot: params ? (params.num + ' / ' + params.N) : '0 / 0'
+    }));
   }
 
   setNum(config: Partial<INumPanel>) {
-    this.textNode.setText(config.num + ' / ' + config.N)
+    this.textNode?.setText(config.num + ' / ' + config.N);
   }
 }

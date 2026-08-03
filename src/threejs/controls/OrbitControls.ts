@@ -315,7 +315,6 @@ export default class OrbitControls extends THREE.EventDispatcher {
       document.removeEventListener('mousemove', this.onMouseMove, false);
       document.removeEventListener('mouseup', this.onMouseUp, false);
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       this.dispatchEvent(END_EVENT);
       this.state = STATE.NONE;
@@ -341,10 +340,9 @@ export default class OrbitControls extends THREE.EventDispatcher {
 
       this.update();
 
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       this.dispatchEvent(START_EVENT); // not sure why these are here...
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+
       // @ts-ignore
       this.dispatchEvent(END_EVENT);
     }) as EventListener;

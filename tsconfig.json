@@ -8,11 +8,11 @@
     // 编译的目标是什么版本的
     /* 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     /* Specify ECMAScript target version: 'ES3' (default), 'ES5', 'ES2015', 'ES2016', 'ES2017', 'ES2018', 'ES2019' or 'ESNEXT'. */
-    "target": "ES2015",
+    "target": "ESNext",
     // 指定生成哪个模块系统代码
     /* 用来指定编译后的js要使用的模块标准: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
     /* Specify module code generation: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', or 'ESNext'. */
-    "module": "commonjs",
+    "module": "ESNext",
     // 编译过程中需要引入的库文件的列表
     /* lib用于指定要包含在编译中的库文件 */
     /* Specify library files to be included in the compilation. */
@@ -40,7 +40,11 @@
         如果设为true，编译每个ts文件之后会生成一个js文件和一个声明文件。
         但是declaration和allowJs不能同时设为true */
     /* Generates corresponding '.d.ts' file. */
-    "declaration": true,
+    "declaration": false,
+    // Vite 负责编译输出，tsconfig 仅用于类型检查
+    "noEmit": true,
+    /* isolatedModules 的值为true或false，指定是否将每个文件作为单独的模块，默认为true，它不可以和declaration同时设定 */
+    "isolatedModules": true,
     // 类型声明文件的输出目录
     //    "declarationDir": "./dist/types",
     /* declarationMap值为true或false，指定是否为声明文件.d.ts生成map文件 */
@@ -171,7 +175,6 @@
   // 指定一个排除列表（include的反向操作）
   // exclude表示要排除的、不编译的文件，它也可以指定一个列表，规则和include一样，可以是文件或文件夹，可以是相对路径或绝对路径，可以使用通配符
   "exclude": [
-    "demo.ts",
     "node_modules",
     "dist/**"
   ],

@@ -1,172 +1,194 @@
-import { Division, Img, ITypeConfig, Span, TypeDiv } from '@type-dom/framework';
+import {
+  Div,
+  Span,
+  TypeDiv,
+  DivProps,
+  InjectionKey,
+  // MaybeRef,
+  addStyleObj,
+  addAttrObj,
+  setStyleObj,
+  onMounted,
+  nextTick,
+  provide,
+} from '@type-dom/framework';
 import { Model } from '../threejs/Model';
-import { IPlace, IManner, mannerList } from '../assets/path';
+import { IPlace, IManner, mannerList } from '../path';
 import { Menu } from '../components/menu/menu.class';
-import { Next } from '../components/next/next.class';
-import { Previous } from '../components/previous/previous.class';
 import { NumPanel } from '../components/num-panel/num-panel.class';
 import { Toolbar } from '../components/toolbar/toolbar.class';
+import { ElArrowLeftSvg, ElArrowRightSvg } from '@type-dom/svgs';
+import { TdIcon } from '@type-dom/ui';
+import { Signal, signal } from '@type-dom/signals';
+import { setDomStyle } from '@type-dom/utils';
 
-interface IHouseConfig extends ITypeConfig {
-  el: HTMLElement
+interface HouseProps extends DivProps {
+  // el: HTMLElement;
+  name: string;
 }
-export class House extends TypeDiv {
+
+export class House extends TypeDiv<HouseProps> {
   className: 'House';
+  mannerItemChoose: Div;
+  posItemChoose: Span;
   private readonly styleArr = mannerList;
   private mannerChoose!: IManner;
   private posArr: IPlace[];
   private posChoose: IPlace;
-  mannerItemChoose: Division;
-  posItemChoose: Span;
   private width = 400;
   private height = 300;
   private classPath = '中式/客餐厅';
   private path = '';
-  private audioBoool = false;
-  private ScreenBoool = true;
-  private rotateBoool = true;
-  private N = mannerList[0].children[0].jpgNameArr.length;
+  private N = mannerList[0].items[0].jpgNameArr.length;
   private num = 1;
   private model!: Model;
   // private loading: any; // ElLoadingComponent;
   private left = 0;
   private readonly menuWrapper: Menu;
-  private readonly nextWrapper: Next;
-  private readonly preWrapper: Previous;
   private readonly numPanel: NumPanel;
-  private readonly toolbar: Toolbar;
+  private nextRef: Signal<HTMLDivElement>;
+  private previewRef: Signal<HTMLDivElement>;
 
-  constructor(config: IHouseConfig) {
-    super();
+  constructor(params: HouseProps) {
+    super(params);
     console.log('house constructor . ');
     this.className = 'House';
-    this.addStyleObj({
+    this.nextRef = signal<HTMLDivElement>();
+    this.previewRef = signal<HTMLDivElement>();
+    addStyleObj(this, {
       width: '100vw',
       height: '100vh',
       textAlign: 'center'
     });
-    this.addAttrObj({
+    addAttrObj(this, {
       zIndex: 105,
       name: 'house'
     });
     // created
     // this.styleArr = mannerList;
-    this.posArr = mannerList[0].children;
+    this.posArr = mannerList[0].items;
 
     this.menuWrapper = new Menu({
-      parent: this,
       left: this.left,
       styleArr: this.styleArr,
       posArr: this.posArr
     });
-    this.nextWrapper = new Next(this);
-    this.preWrapper = new Previous(this);
     this.numPanel = new NumPanel({
       // parent: this,
       num: this.num,
       N: this.N
     });
-    this.toolbar = new Toolbar(this);
     this.addChildren(
       this.menuWrapper,
-      this.nextWrapper,
-      this.preWrapper,
+      new Div({
+        name: 'next-div',
+        refDom: this.nextRef,
+        styleObj: {
+          position: 'absolute',
+          right: '5px',
+        },
+        slot: new TdIcon({
+          slot: new ElArrowRightSvg(),
+          styleObj: {
+            fontSize: '25px',
+            background: 'rgba(0, 0, 0, 0.5)',
+            borderWidth: '0px',
+            width: '50px',
+            height: '50px',
+            color: '#fff',
+          },
+        }),
+        onClick: () => {
+          console.log('next onClick . ');
+          if (this.num < this.N) {
+            this.num += 1;
+          } else {
+            this.num = 1;
+          }
+          this.resetNum();
+        },
+      }),
+      new Div({
+        name: 'preview-div',
+        refDom: this.previewRef,
+        styleObj: {
+          position: 'absolute',
+          left: '5px',
+        },
+        slot: new TdIcon({
+          slot: new ElArrowLeftSvg(),
+          styleObj: {
+            fontSize: '25px',
+            background: 'rgba(0, 0, 0, 0.5)',
+            borderWidth: '0px',
+            width: '50px',
+            height: '50px',
+            color: '#fff',
+          },
+          onClick: () => {
+            if (this.num > 1) {
+              this.num -= 1;
+            } else {
+              this.num = this.N;
+            }
+            this.resetNum();
+          },
+        }),
+      }),
       this.numPanel,
-      this.toolbar
+      new Toolbar(this)
     );
     this.mannerChoose = mannerList[0];
-    this.mannerItemChoose = this.menuWrapper.manner.children[1] as Division;
-    this.posChoose = mannerList[0].children[0];
-    this.posItemChoose = this.menuWrapper.pos.children[1] as Span;
+    this.mannerItemChoose = this.menuWrapper.manner?.children[1] as Div;
+    this.posChoose = mannerList[0].items[0];
+    this.posItemChoose = this.menuWrapper.pos?.children[1] as Span;
     // this.loading = Toast.loading({
     //   duration: 0, // 持续展示 toast
     //   forbidClick: true, // 禁用背景点击
     //   loadingType: 'spinner',
     //   // message: 'Loading',
     // });
-
-    // 渲染
-    this.render();
     // 挂载
-    this.mount(config.el);
-    this.initModel();
+    // this.mount(params.el);
+    // this.initModel();
+  }
+  override setup() {
+    this.model = new Model();
+    provide(houseInjectKey, {
+      numPanel: this.numPanel,
+      model: this.model,
+    });
+    onMounted(() => {
+      nextTick(() => {
+        this.mannerItemChoose = this.menuWrapper.manner?.children[1] as Div;
+        this.initModel();
+      })
+    })
   }
 
   initModel() {
     console.log('initModel . ');
+    if (!this.dom) {
+      console.warn('this.dom is undefined . ');
+      return;
+    }
     // mounted
+    this.model.init(this.dom);
     this.width = this.dom.clientWidth; // 0??
     console.log('this.width is ', this.width);
     this.left = this.width > 440 ? (this.width - 440) / 2 : 0;
-    this.menuWrapper.setStyleObj({
+    console.warn('this.left is ', this.left);
+    setStyleObj(this.menuWrapper, {
       left: this.left + 'px'
     });
     this.height = this.dom.clientHeight;
     console.log('this.height is ', this.height);
-    this.nextWrapper.setStyleObj({
+    setDomStyle(this.nextRef.get(), {
       top: this.height / 2 + 'px'
     });
-    this.preWrapper.setStyleObj({
+    setDomStyle(this.previewRef.get(), {
       top: this.height / 2 + 'px'
     });
-    this.model = new Model();
-    this.model.init(this.dom);
-  }
-
-  audioClick(audioImg: Img) {
-    if (this.audioBoool) {
-      this.audioBoool = false;
-      audioImg.setAttrObj({
-        src: 'assets/UI/关闭声音.png'
-      });
-      this.model.audio.pause();
-    } else {
-      this.audioBoool = true;
-      audioImg.setAttrObj({
-        src: 'assets/UI/打开声音.png'
-      });
-      this.model.audio.play();
-    }
-  }
-
-  screenClick(screenImg: Img) {
-    if (this.ScreenBoool) {
-      this.ScreenBoool = false;
-      screenImg.setAttrObj({
-        src: 'assets/UI/退出全屏.png'
-      });
-      this.model.events.requestFullScreen();
-    } else {
-      this.ScreenBoool = true;
-      screenImg.setAttrObj({
-        src: 'assets/UI/全屏5.png'
-      });
-      this.model.events.exitFullscreen();
-    }
-  }
-
-  questionClick() {
-    // Dialog.alert({
-    //   title: '旋转操作',
-    //   message: '按住左键不放上下左右拖动，可以旋转整个场景',
-    // });
-    // this.$alert('按住左键不放上下左右拖动，可以旋转整个场景', '旋转操作', {})
-  }
-
-  rotateClick(rotateImg: Img) {
-    if (this.rotateBoool) {
-      this.rotateBoool = false;
-      rotateImg.setAttrObj({
-        src: 'assets/UI/旋转.png'
-      });
-      this.model.rotateBoool = false;
-    } else {
-      this.rotateBoool = true;
-      rotateImg.setAttrObj({
-        src: 'assets/UI/停止旋转.png'
-      });
-      this.model.rotateBoool = true;
-    }
   }
 
   resetNum() {
@@ -188,27 +210,8 @@ export class House extends TypeDiv {
     this.model.animation();
   }
 
-  nextClick() {
-    console.log('nextClick . ');
-    if (this.num < this.N) {
-      this.num += 1;
-    } else {
-      this.num = 1;
-    }
-    this.resetNum();
-  }
-
-  previewClick() {
-    if (this.num > 1) {
-      this.num -= 1;
-    } else {
-      this.num = this.N;
-    }
-    this.resetNum();
-  }
-
-  mannerClick(styleObj: IManner, mannerItem: Division) {
-    console.log('styleClick . styleObj is ', styleObj);
+  mannerClick(manner: IManner, mannerItem: Div) {
+    console.log('mannerClick . manner is ', manner);
     // this.loading = Toast.loading({
     //   forbidClick: true,
     //   duration: 0,
@@ -217,28 +220,28 @@ export class House extends TypeDiv {
     // });
     // this.$loading({
     //   lock: true,
-    //   text: 'Loading',
+    //   slot: 'Loading',
     //   spinner: 'el-icon-loading',
     //   background: 'rgba(0, 0, 0, 0.7)'
     // });
     this.num = 1;
     this.mannerChoose.styleObj.background = '';
-    this.mannerItemChoose.setStyleObj({
+    setStyleObj(this.mannerItemChoose, {
       background: ''
     });
     this.posChoose.styleObj.background = undefined;
-    this.mannerChoose = styleObj;
+    this.mannerChoose = manner;
     this.mannerItemChoose = mannerItem;
     this.mannerChoose.styleObj.background = '#409EFF';
-    mannerItem.setStyleObj({
+    setStyleObj(mannerItem, {
       background: '#409EFF'
     });
-    this.posArr = this.mannerChoose.children;
+    this.posArr = this.mannerChoose.items;
     this.menuWrapper.setPosList(this.posArr);
-    this.menuWrapper.pos.render();
+    this.menuWrapper.pos?.mount(this.menuWrapper.dom);
     this.posChoose = this.posArr[0];
-    this.posItemChoose = this.menuWrapper.pos.children[1] as Span;
-    this.posItemChoose.setStyleObj({
+    this.posItemChoose = this.menuWrapper.pos?.children[1] as Span;
+    setStyleObj(this.posItemChoose, {
       background: '#409EFF'
     });
     this.posArr[0].styleObj.background = '#409EFF';
@@ -269,18 +272,18 @@ export class House extends TypeDiv {
     // });
     // this.$loading({
     //   lock: true,
-    //   text: 'Loading',
+    //   slot: 'Loading',
     //   spinner: 'el-icon-loading',
     //   background: 'rgba(0, 0, 0, 0.7)'
     // });
     this.num = 1;
     this.posChoose.styleObj.background = undefined;
     this.posChoose = posObj;
-    this.posItemChoose.setStyleObj({
+    setStyleObj(this.posItemChoose, {
       background: '' // undefined 无效 todo ？？？？
     });
     this.posItemChoose = posItem;
-    posItem.setStyleObj({
+    setStyleObj(posItem, {
       background: '#409EFF'
     });
     this.N = this.posChoose.jpgNameArr.length;
@@ -301,3 +304,10 @@ export class House extends TypeDiv {
     );
   }
 }
+
+export interface ButtonGroupContext {
+  model: Model;
+  numPanel: NumPanel;
+}
+
+export const houseInjectKey: InjectionKey<ButtonGroupContext> = Symbol('houseInjectKey');
